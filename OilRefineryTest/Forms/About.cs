@@ -7,21 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using OilRefineryTest.Forms;
 
-namespace OilRefineryTest
+namespace OilRefineryTest.Forms
 {
-    public partial class Form1 : Form
+    public partial class About : Form
     {
-        public Form1()
+        public About()
         {
             InitializeComponent();
         }
 
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            About about = new About();
-            about.ShowDialog();
+            MessageBox.Show("ТЫ ПИДОР!");
         }
     }
 }
