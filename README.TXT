@@ -1,2 +1,2 @@
-Some student's project
+Some student's project, asdasdasd!
 C# windows forms, simple labels and fields etc. etc. etc...
