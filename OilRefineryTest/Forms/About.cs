@@ -19,7 +19,7 @@ namespace OilRefineryTest.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("It works");
+            MessageBox.Show("TI PIDOR");
         }
     }
 }
