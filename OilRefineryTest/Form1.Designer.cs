@@ -40,12 +40,13 @@
             this.hintMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(867, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(927, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // hintMenuItem
             // 
+            this.hintMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.hintMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.hintMenuItem.Name = "hintMenuItem";
@@ -55,6 +56,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem.Text = "О программе";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
@@ -63,7 +65,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(867, 355);
+            this.ClientSize = new System.Drawing.Size(927, 396);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
