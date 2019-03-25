@@ -28,6 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint11 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(1D, 1D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint12 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(2D, 2D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint13 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(5D, 5D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint14 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(10D, 7D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint15 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(20D, 8D);
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint6 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(1D, 1D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint7 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(2D, 2D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint8 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(5D, 5D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint9 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(10D, 7D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint10 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(20D, 8D);
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(1D, 1D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(2D, 2D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint3 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(5D, 5D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint4 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(10D, 7D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint5 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(20D, 8D);
             this.tabPane = new System.Windows.Forms.TabControl();
             this.tabPage_Temperatue = new System.Windows.Forms.TabPage();
             this.tabPage_CO2 = new System.Windows.Forms.TabPage();
@@ -48,13 +73,24 @@
             this.button_ChangeData = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.chart_Oil = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chart_CO2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chart_Temperature = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.refiningStateBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPane.SuspendLayout();
+            this.tabPage_Temperatue.SuspendLayout();
+            this.tabPage_CO2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.tabPage_Oil.SuspendLayout();
             this.taskManager.SuspendLayout();
             this.adminPane.SuspendLayout();
             this.controlPane.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_Oil)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_CO2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_Temperature)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.refiningStateBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabPane
@@ -70,8 +106,8 @@
             // 
             // tabPage_Temperatue
             // 
-            this.tabPage_Temperatue.BackgroundImage = global::OilRefineryTest.Properties.Resources.Новый_текстовый_документ;
             this.tabPage_Temperatue.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tabPage_Temperatue.Controls.Add(this.chart_Temperature);
             this.tabPage_Temperatue.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Temperatue.Name = "tabPage_Temperatue";
             this.tabPage_Temperatue.Padding = new System.Windows.Forms.Padding(3);
@@ -82,7 +118,7 @@
             // 
             // tabPage_CO2
             // 
-            this.tabPage_CO2.BackgroundImage = global::OilRefineryTest.Properties.Resources.Новый_текстовый_документ;
+            this.tabPage_CO2.Controls.Add(this.chart_CO2);
             this.tabPage_CO2.Location = new System.Drawing.Point(4, 22);
             this.tabPage_CO2.Name = "tabPage_CO2";
             this.tabPage_CO2.Padding = new System.Windows.Forms.Padding(3);
@@ -127,8 +163,8 @@
             // 
             // tabPage_Oil
             // 
-            this.tabPage_Oil.BackgroundImage = global::OilRefineryTest.Properties.Resources.Новый_текстовый_документ;
             this.tabPage_Oil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.tabPage_Oil.Controls.Add(this.chart_Oil);
             this.tabPage_Oil.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Oil.Name = "tabPage_Oil";
             this.tabPage_Oil.Padding = new System.Windows.Forms.Padding(3);
@@ -226,6 +262,7 @@
             this.button_AddData.TabIndex = 0;
             this.button_AddData.Text = "Ввести данные";
             this.button_AddData.UseVisualStyleBackColor = true;
+            this.button_AddData.Click += new System.EventHandler(this.button_AddData_Click);
             // 
             // button_ChangeData
             // 
@@ -255,6 +292,76 @@
             this.button1.Text = "Изменить константы";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // chart_Oil
+            // 
+            chartArea3.Name = "ChartArea1";
+            this.chart_Oil.ChartAreas.Add(chartArea3);
+            this.chart_Oil.Dock = System.Windows.Forms.DockStyle.Top;
+            legend3.Name = "Legend1";
+            this.chart_Oil.Legends.Add(legend3);
+            this.chart_Oil.Location = new System.Drawing.Point(3, 3);
+            this.chart_Oil.Name = "chart_Oil";
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            series3.Points.Add(dataPoint11);
+            series3.Points.Add(dataPoint12);
+            series3.Points.Add(dataPoint13);
+            series3.Points.Add(dataPoint14);
+            series3.Points.Add(dataPoint15);
+            this.chart_Oil.Series.Add(series3);
+            this.chart_Oil.Size = new System.Drawing.Size(1436, 930);
+            this.chart_Oil.TabIndex = 0;
+            // 
+            // chart_CO2
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.chart_CO2.ChartAreas.Add(chartArea2);
+            this.chart_CO2.Dock = System.Windows.Forms.DockStyle.Top;
+            legend2.Name = "Legend1";
+            this.chart_CO2.Legends.Add(legend2);
+            this.chart_CO2.Location = new System.Drawing.Point(3, 3);
+            this.chart_CO2.Name = "chart_CO2";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            series2.Points.Add(dataPoint6);
+            series2.Points.Add(dataPoint7);
+            series2.Points.Add(dataPoint8);
+            series2.Points.Add(dataPoint9);
+            series2.Points.Add(dataPoint10);
+            this.chart_CO2.Series.Add(series2);
+            this.chart_CO2.Size = new System.Drawing.Size(1436, 930);
+            this.chart_CO2.TabIndex = 1;
+            // 
+            // chart_Temperature
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart_Temperature.ChartAreas.Add(chartArea1);
+            this.chart_Temperature.Dock = System.Windows.Forms.DockStyle.Top;
+            legend1.Name = "Legend1";
+            this.chart_Temperature.Legends.Add(legend1);
+            this.chart_Temperature.Location = new System.Drawing.Point(3, 3);
+            this.chart_Temperature.Name = "chart_Temperature";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            series1.Points.Add(dataPoint1);
+            series1.Points.Add(dataPoint2);
+            series1.Points.Add(dataPoint3);
+            series1.Points.Add(dataPoint4);
+            series1.Points.Add(dataPoint5);
+            this.chart_Temperature.Series.Add(series1);
+            this.chart_Temperature.Size = new System.Drawing.Size(1436, 930);
+            this.chart_Temperature.TabIndex = 1;
+            // 
+            // refiningStateBindingSource
+            // 
+            this.refiningStateBindingSource.DataSource = typeof(OilRefinery.RefiningState);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -272,13 +379,20 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.tabPane.ResumeLayout(false);
+            this.tabPage_Temperatue.ResumeLayout(false);
+            this.tabPage_CO2.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.tabPage_Oil.ResumeLayout(false);
             this.taskManager.ResumeLayout(false);
             this.adminPane.ResumeLayout(false);
             this.controlPane.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart_Oil)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_CO2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_Temperature)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.refiningStateBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -305,6 +419,10 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button_ChangeData;
         private System.Windows.Forms.Button button_AddData;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart_Oil;
+        private System.Windows.Forms.BindingSource refiningStateBindingSource;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart_Temperature;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart_CO2;
     }
 }
 
