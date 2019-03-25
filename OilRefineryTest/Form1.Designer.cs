@@ -200,7 +200,7 @@
             this.button_AddTask.TabIndex = 0;
             this.button_AddTask.Text = "Добавить задачу";
             this.button_AddTask.UseVisualStyleBackColor = true;
-            this.button_AddTask.Click += new System.EventHandler(this.button1_Click);
+            this.button_AddTask.Click += new System.EventHandler(this.button_AddTask_Click);
             // 
             // button_ChangeTask
             // 
@@ -210,7 +210,7 @@
             this.button_ChangeTask.TabIndex = 1;
             this.button_ChangeTask.Text = "Изменить задачу";
             this.button_ChangeTask.UseVisualStyleBackColor = true;
-            this.button_ChangeTask.Click += new System.EventHandler(this.button2_Click);
+            this.button_ChangeTask.Click += new System.EventHandler(this.button_ChangeTask_Click);
             // 
             // button_DeletaTask
             // 
@@ -220,7 +220,7 @@
             this.button_DeletaTask.TabIndex = 2;
             this.button_DeletaTask.Text = "Удалить задачу";
             this.button_DeletaTask.UseVisualStyleBackColor = true;
-            this.button_DeletaTask.Click += new System.EventHandler(this.button3_Click);
+            this.button_DeletaTask.Click += new System.EventHandler(this.button_DeleteTask_Click);
             // 
             // adminPane
             // 
