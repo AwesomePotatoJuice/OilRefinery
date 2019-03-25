@@ -18,11 +18,22 @@ namespace OilRefineryTest.Forms
         {
             InitializeComponent();
         }
-        public string result
+        public string resultName
         {
             get
             {
                 return textBox1.Text;
+            }
+        }
+        public DateTime resultDate
+        {
+            get
+            {
+                DateTime dt = monthCalendar1.SelectionEnd;
+                String txt = maskedTextBox1.Text.Substring(3, 2);
+                dt = dt.AddHours(Double.Parse(maskedTextBox1.Text.Substring(0, 2)));
+                dt = dt.AddMinutes(Double.Parse(maskedTextBox1.Text.Substring(3, 2)));
+                return dt;
             }
         }
         public bool success()

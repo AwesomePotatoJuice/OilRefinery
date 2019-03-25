@@ -9,15 +9,18 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using OilRefineryTest.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using OilRefineryTest.Util;
 
 namespace OilRefineryTest
 {
     public partial class Form1 : Form
     {
+        private NotificationManager notificationManager;
         public Form1()
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
+            notificationManager = new NotificationManager(notifyIcon1);
         }
 
 
@@ -35,7 +38,9 @@ namespace OilRefineryTest
             addTask.ShowDialog();
             if (addTask.success())
             {
-                checkedListBox_Tasks.Items.Add(addTask.result);
+                checkedListBox_Tasks.Items.Add(addTask.resultName);
+                listView1.Items.Add(addTask.resultDate.ToString().Substring(0, 15));
+                notificationManager.addTask(addTask.resultDate, addTask.resultName);
             }
         }
         //Изменение задачи в коллекции через админ панель
@@ -49,7 +54,9 @@ namespace OilRefineryTest
                 {
                     int index = checkedListBox_Tasks.SelectedIndex;
                     checkedListBox_Tasks.Items.RemoveAt(index);
-                    checkedListBox_Tasks.Items.Insert(index, changeTask.result);
+                    checkedListBox_Tasks.Items.Insert(index, changeTask.resultName);
+                    listView1.Items.Insert(index, changeTask.resultDate.ToString().Substring(0, 15));
+                    notificationManager.addTask(changeTask.resultDate, changeTask.resultName);
                 }
             }
         }
@@ -61,8 +68,12 @@ namespace OilRefineryTest
             {
                 DeleteAcceptor deleteAcceptor = new DeleteAcceptor();
                 deleteAcceptor.ShowDialog();
+                int index = checkedListBox_Tasks.SelectedIndex;
                 if (deleteAcceptor.success())
-                    checkedListBox_Tasks.Items.RemoveAt(checkedListBox_Tasks.SelectedIndex);
+                { 
+                    checkedListBox_Tasks.Items.RemoveAt(index);
+                    listView1.Items.RemoveAt(index);
+                }
             }
         }
         //Добавление точки в элемент Chart через панель управления
@@ -80,6 +91,11 @@ namespace OilRefineryTest
             {
                 points.Add(new DataPoint(inputBox.result[0], inputBox.result[1]));
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
