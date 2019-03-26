@@ -11,6 +11,7 @@ namespace OilRefineryTest.Util
         private DateTime dateTime;
 
         private String message, title;
+        public bool notified = false;
 
         public Notification(DateTime dateTime, String message, String title)
         {

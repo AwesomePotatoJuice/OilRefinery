@@ -5,11 +5,13 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using OilRefineryTest.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using OilRefineryTest.Util;
+using Timer = System.Threading.Timer;
 
 namespace OilRefineryTest
 {
@@ -95,7 +97,10 @@ namespace OilRefineryTest
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
+            for (int i = 0; i < 3; i++)
+            {
+                notificationManager.addTask(DateTime.Now.AddSeconds(5 + i*3), i.ToString());
+            }
         }
     }
 }
