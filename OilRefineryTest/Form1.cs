@@ -25,8 +25,6 @@ namespace OilRefineryTest
         private readonly SavedInstanceManager savedInstanceManager = new SavedInstanceManager();
         private ListView.ListViewItemCollection loadedItemsDate; 
         private ListBox.ObjectCollection loadedItemsTasks; 
-        public Form1()                                      
-        private ArrayList descriptions;
         public Form1()
         {
             InitializeComponent();
