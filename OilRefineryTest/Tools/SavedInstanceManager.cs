@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Windows.Forms;
 using System.Xml;
 
 namespace OilRefineryTest.Tools
@@ -34,10 +35,8 @@ namespace OilRefineryTest.Tools
             }
         }
         
-        public void add(Object task, Object date, Object notification)
+        public void add(Object date, Object name, Object notification)
         {
-            XmlElement element = xDoc.CreateElement("Task");
-            XmlAttribute name = xDoc.CreateAttribute(task.ToString());
             //if (fs == null)
             //{
             //    Directory.CreateDirectory("Data");
@@ -49,8 +48,28 @@ namespace OilRefineryTest.Tools
             //savedInstance.add(itemsSet);
         }
 
-        public void append(DateTime dt, string taskName)
+        public void append(DateTime dt, string taskName, string taskDescription)
         {
+
+            XmlElement xRoot = xDoc.DocumentElement;
+            if (xRoot != null)
+            {
+                xRoot = xDoc.CreateElement("root");
+            }
+            XmlElement element = xDoc.CreateElement("task");
+            XmlAttribute name = xDoc.CreateAttribute("name");
+            XmlAttribute date = xDoc.CreateAttribute("date");
+            XmlAttribute description = xDoc.CreateAttribute("description");
+            XmlText nameText = xDoc.CreateTextNode(taskName);
+            XmlText dateText = xDoc.CreateTextNode(dt.ToString());
+            XmlText descriptionText = xDoc.CreateTextNode(taskDescription);
+            name.AppendChild(nameText);
+            date.AppendChild(dateText);
+            description.AppendChild(descriptionText);
+            element.Attributes.Append(name);
+            element.Attributes.Append(date);
+            element.Attributes.Append(description);
+            xRoot.AppendChild(element);
 
         }
 

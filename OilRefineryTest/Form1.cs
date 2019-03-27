@@ -21,7 +21,7 @@ namespace OilRefineryTest
     public partial class Form1 : Form
     {
         private NotificationManager notificationManager;
-        private ArrayList descriptions;
+        private ArrayList descriptions = new ArrayList();
         private readonly SavedInstanceManager savedInstanceManager = new SavedInstanceManager();
         private ListView.ListViewItemCollection loadedItemsDate; 
         private ListBox.ObjectCollection loadedItemsTasks; 
@@ -53,7 +53,7 @@ namespace OilRefineryTest
                 listView1.Items.Add(addTask.resultDate.ToString().Substring(0, 15));
                 descriptions.Add(addTask.description);
                 notificationManager.addTask(addTask.resultDate, addTask.resultName);
-                //savedInstanceManager.append(addTask.resultDate, addTask.resultName);
+                //savedInstanceManager.append(addTask.resultDate, addTask.resultName, addTask.description);
             }
         }
         //Изменение задачи в коллекции через админ панель
@@ -108,14 +108,14 @@ namespace OilRefineryTest
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            //notificationManager.addTask(DateTime.Now.AddSeconds(10));
         }
 
         private void formClosing(object sender, EventArgs e)
         {
-            savedInstanceManager.clear();
-            savedInstanceManager.add(checkedListBox_Tasks.Items, listView1.Items, notificationManager);
-            savedInstanceManager.save();
+            //savedInstanceManager.clear();
+            //savedInstanceManager.add(checkedListBox_Tasks.Items, listView1.Items, notificationManager);
+            //savedInstanceManager.save();
         }
 
         private void loadData()
