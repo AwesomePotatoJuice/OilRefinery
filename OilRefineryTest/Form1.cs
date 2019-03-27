@@ -12,12 +12,14 @@ using OilRefineryTest.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using OilRefineryTest.Util;
 using Timer = System.Threading.Timer;
+using System.Collections;
 
 namespace OilRefineryTest
 {
     public partial class Form1 : Form
     {
         private NotificationManager notificationManager;
+        private ArrayList descriptions;
         public Form1()
         {
             InitializeComponent();
@@ -42,6 +44,7 @@ namespace OilRefineryTest
             {
                 checkedListBox_Tasks.Items.Add(addTask.resultName);
                 listView1.Items.Add(addTask.resultDate.ToString().Substring(0, 15));
+                descriptions.Add(addTask.description);
                 notificationManager.addTask(addTask.resultDate, addTask.resultName);
             }
         }

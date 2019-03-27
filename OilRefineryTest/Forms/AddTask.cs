@@ -51,5 +51,18 @@ namespace OilRefineryTest.Forms
             ok = false;
             Hide();
         }
+
+        private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
+        {
+
+        }
+        public string description
+        {
+            get
+            {
+                return textBox2.Text;
+            }
+        }
+           
     }
 }
