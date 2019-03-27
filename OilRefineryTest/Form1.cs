@@ -20,11 +20,9 @@ namespace OilRefineryTest
 {
     public partial class Form1 : Form
     {
-        private NotificationManager notificationManager;
-        private ArrayList descriptions = new ArrayList();
         private readonly SavedInstanceManager savedInstanceManager = new SavedInstanceManager();
-        private ListView.ListViewItemCollection loadedItemsDate; 
-        private ListBox.ObjectCollection loadedItemsTasks; 
+        private readonly NotificationManager notificationManager;
+        private ArrayList descriptions = new ArrayList();
         public Form1()
         {
             InitializeComponent();
@@ -49,11 +47,12 @@ namespace OilRefineryTest
             addTask.ShowDialog();
             if (addTask.success())
             {
-                checkedListBox_Tasks.Items.Add(addTask.resultName);
-                listView1.Items.Add(addTask.resultDate.ToString().Substring(0, 15));
-                descriptions.Add(addTask.description);
-                notificationManager.addTask(addTask.resultDate, addTask.resultName);
-                //savedInstanceManager.append(addTask.resultDate, addTask.resultName, addTask.description);
+                this.addTask(addTask.resultDate, addTask.resultName, addTask.description);
+                //checkedListBox_Tasks.Items.Add(addTask.resultName);
+                //listView1.Items.Add(addTask.resultDate.ToString().Substring(0, 15));
+                //descriptions.Add(addTask.description);
+                //notificationManager.addTask(addTask.resultDate, addTask.resultName);
+                savedInstanceManager.append(addTask.resultDate, addTask.resultName, addTask.description);
             }
         }
         //Изменение задачи в коллекции через админ панель
@@ -113,6 +112,7 @@ namespace OilRefineryTest
 
         private void formClosing(object sender, EventArgs e)
         {
+            savedInstanceManager.save();
             //savedInstanceManager.clear();
             //savedInstanceManager.add(checkedListBox_Tasks.Items, listView1.Items, notificationManager);
             //savedInstanceManager.save();
@@ -122,13 +122,29 @@ namespace OilRefineryTest
         {
             if (savedInstanceManager.hasSavedFile())
             {
-                loadedItemsTasks = (ListBox.ObjectCollection) savedInstanceManager.load()[0];
-                loadedItemsDate = (ListView.ListViewItemCollection) savedInstanceManager.load()[1];
-                notificationManager = (NotificationManager) savedInstanceManager.load()[2];
-                listView1.Items.AddRange(loadedItemsDate);
-                checkedListBox_Tasks.Items.AddRange(loadedItemsTasks);
+                ArrayList ar = savedInstanceManager.load();
+                foreach (SavedInstance savedInstance in ar)
+                {
+                    addTask((DateTime)savedInstance.dateTime, savedInstance.taskName, savedInstance.taskDescription);
+                }
             }
+            //if (savedInstanceManager.hasSavedFile())
+            //{
+            //    loadedItemsTasks = (ListBox.ObjectCollection) savedInstanceManager.load()[0];
+            //    loadedItemsDate = (ListView.ListViewItemCollection) savedInstanceManager.load()[1];
+            //    notificationManager = (NotificationManager) savedInstanceManager.load()[2];
+            //    listView1.Items.AddRange(loadedItemsDate);
+            //    checkedListBox_Tasks.Items.AddRange(loadedItemsTasks);
+            //}
 
+        }
+
+        private void addTask(DateTime dt, string taskName, string taskDescription)
+        {
+            checkedListBox_Tasks.Items.Add(taskName);
+            listView1.Items.Add(dt.ToString().Substring(0, 15));
+            descriptions.Add(taskDescription);
+            notificationManager.addTask(dt, taskName);
         }
     }
 }

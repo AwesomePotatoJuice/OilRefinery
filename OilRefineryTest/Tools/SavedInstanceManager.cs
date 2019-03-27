@@ -14,7 +14,7 @@ namespace OilRefineryTest.Tools
     [Serializable]
     class SavedInstanceManager
     {
-
+        private ArrayList savedInstances = new ArrayList();
         private XmlDocument xDoc = new XmlDocument();
         private const string PATH = "Data\\SavedInstance.xml";
 
@@ -52,34 +52,73 @@ namespace OilRefineryTest.Tools
         {
 
             XmlElement xRoot = xDoc.DocumentElement;
-            if (xRoot != null)
+            if (xRoot == null)
             {
                 xRoot = xDoc.CreateElement("root");
+                xDoc.AppendChild(xRoot);
             }
-            XmlElement element = xDoc.CreateElement("task");
-            XmlAttribute name = xDoc.CreateAttribute("name");
-            XmlAttribute date = xDoc.CreateAttribute("date");
-            XmlAttribute description = xDoc.CreateAttribute("description");
+            XmlElement task = xDoc.CreateElement("task");
+
+            XmlElement name = xDoc.CreateElement("name");
+            XmlElement date = xDoc.CreateElement("date");
+            XmlElement description = xDoc.CreateElement("description");
+
             XmlText nameText = xDoc.CreateTextNode(taskName);
             XmlText dateText = xDoc.CreateTextNode(dt.ToString());
             XmlText descriptionText = xDoc.CreateTextNode(taskDescription);
+
+            
             name.AppendChild(nameText);
             date.AppendChild(dateText);
             description.AppendChild(descriptionText);
-            element.Attributes.Append(name);
-            element.Attributes.Append(date);
-            element.Attributes.Append(description);
-            xRoot.AppendChild(element);
 
+            task.AppendChild(name);
+            task.AppendChild(date);
+            task.AppendChild(description);
+
+            xRoot.AppendChild(task);
         }
 
         public void save()
         {
+            xDoc.Save(PATH);
             //bf.Serialize(fs, savedInstance);
         }
 
         public ArrayList load()
         {
+            XmlDocument xDoc = new XmlDocument();
+            xDoc.Load(PATH);
+            // получим корневой элемент
+            XmlElement xRoot = xDoc.DocumentElement;
+            // обход всех узлов в корневом элементе
+            foreach (XmlNode xnode in xRoot)
+            {
+                // обходим все дочерние узлы элемента task
+                SavedInstance savedInstance = new SavedInstance { dateTime = DateTime.Now, taskDescription = "description", taskName = "taskName" };
+                foreach (XmlNode childnode in xnode.ChildNodes)
+                {
+                    // если узел - name
+                    if (childnode.Name == "name")
+                    {
+                        savedInstance.taskName = childnode.InnerText;
+                        Console.WriteLine("name: {0}", childnode.InnerText);
+                    }
+                    // если узел date
+                    if (childnode.Name == "date")
+                    {
+                        savedInstance.dateTime = childnode.InnerText;
+                        Console.WriteLine("date: {0}", childnode.InnerText);
+                    }
+                    // если узел description
+                    if (childnode.Name == "description")
+                    {
+                        savedInstance.taskDescription = childnode.InnerText;
+                        Console.WriteLine("description: {0}", childnode.InnerText);
+                    }
+                }
+                savedInstances.Add(savedInstance);
+            }
             //if (fs == null)
             //{
             //    Directory.CreateDirectory("Data");
@@ -87,7 +126,7 @@ namespace OilRefineryTest.Tools
             //}
 
             //return (((SavedInstance) bf.Deserialize(fs)).getItems());
-            return null;
+            return savedInstances;
         }
 
         public bool hasSavedFile()
@@ -100,6 +139,7 @@ namespace OilRefineryTest.Tools
             if (hasSavedFile())
             {
                 File.Delete(PATH);
+                savedInstances.Clear();
             }
         }
         
