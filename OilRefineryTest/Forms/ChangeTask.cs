@@ -51,5 +51,12 @@ namespace OilRefineryTest.Forms
             ok = false;
             Hide();
         }
+        public string description
+        {
+            get
+            {
+                return textBox2.Text;
+            }
+        }
     }
 }

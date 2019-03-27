@@ -22,10 +22,10 @@ namespace OilRefineryTest.Util
             this.notifyIcon = notifyIcon;
         }
 
-        internal void addTask(DateTime dateTime, String name)
+        internal void addTask(DateTime dateTime, String description, String name)
         {
             //Тут  закралась избыточность и повторение кода, по-хорошему, надо исправить. По факту, хер с ним, пока работает.
-            Notification notification = new Notification(dateTime, "", name);
+            Notification notification = new Notification(dateTime, description, name);
             notifications.Add(notification);
             //dateList.Add(dateTime);
             //dateList.Sort();

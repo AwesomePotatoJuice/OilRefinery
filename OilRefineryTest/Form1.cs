@@ -21,7 +21,7 @@ namespace OilRefineryTest
     public partial class Form1 : Form
     {
         private NotificationManager notificationManager;
-        private ArrayList descriptions;
+        private ArrayList descriptions = new ArrayList();
         private readonly SavedInstanceManager savedInstanceManager = new SavedInstanceManager();
         private ListView.ListViewItemCollection loadedItemsDate; 
         private ListBox.ObjectCollection loadedItemsTasks; 
@@ -52,7 +52,7 @@ namespace OilRefineryTest
                 checkedListBox_Tasks.Items.Add(addTask.resultName);
                 listView1.Items.Add(addTask.resultDate.ToString().Substring(0, 15));
                 descriptions.Add(addTask.description);
-                notificationManager.addTask(addTask.resultDate, addTask.resultName);
+                notificationManager.addTask(addTask.resultDate, addTask.description, addTask.resultName);
                 //savedInstanceManager.append(addTask.resultDate, addTask.resultName);
             }
         }
@@ -68,8 +68,11 @@ namespace OilRefineryTest
                     int index = checkedListBox_Tasks.SelectedIndex;
                     checkedListBox_Tasks.Items.RemoveAt(index);
                     checkedListBox_Tasks.Items.Insert(index, changeTask.resultName);
+                    listView1.Items.RemoveAt(index);
                     listView1.Items.Insert(index, changeTask.resultDate.ToString().Substring(0, 16));
-                    notificationManager.addTask(changeTask.resultDate, changeTask.resultName);
+                    descriptions.RemoveAt(index);
+                    descriptions.Insert(index, changeTask.description);
+                    notificationManager.addTask(changeTask.resultDate, changeTask.description, changeTask.resultName);
                 }
             }
         }
@@ -86,6 +89,7 @@ namespace OilRefineryTest
                 { 
                     checkedListBox_Tasks.Items.RemoveAt(index);
                     listView1.Items.RemoveAt(index);
+                    descriptions.RemoveAt(index);
                 }
             }
         }
@@ -113,9 +117,9 @@ namespace OilRefineryTest
 
         private void formClosing(object sender, EventArgs e)
         {
-            savedInstanceManager.clear();
-            savedInstanceManager.add(checkedListBox_Tasks.Items, listView1.Items, notificationManager);
-            savedInstanceManager.save();
+            //savedInstanceManager.clear();
+           // savedInstanceManager.add(checkedListBox_Tasks.Items, listView1.Items, notificationManager);
+           // savedInstanceManager.save();
         }
 
         private void loadData()
