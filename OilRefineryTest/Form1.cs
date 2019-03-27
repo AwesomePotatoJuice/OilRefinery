@@ -14,6 +14,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using OilRefineryTest.Tools;
 using OilRefineryTest.Util;
 using Timer = System.Threading.Timer;
+using System.Collections;
 
 namespace OilRefineryTest
 {
@@ -25,6 +26,8 @@ namespace OilRefineryTest
         private ListView.ListViewItemCollection loadedItemsDate; 
         private ListBox.ObjectCollection loadedItemsTasks; 
         public Form1()                                      
+        private ArrayList descriptions;
+        public Form1()
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
@@ -49,8 +52,8 @@ namespace OilRefineryTest
             if (addTask.success())
             {
                 checkedListBox_Tasks.Items.Add(addTask.resultName);
-                listView1.Items.Add(addTask.resultDate.ToString().Substring(0, 16));
-                //descriptions.Add(addTask.description);
+                listView1.Items.Add(addTask.resultDate.ToString().Substring(0, 15));
+                descriptions.Add(addTask.description);
                 notificationManager.addTask(addTask.resultDate, addTask.resultName);
                 //savedInstanceManager.append(addTask.resultDate, addTask.resultName);
             }
