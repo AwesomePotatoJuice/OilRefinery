@@ -27,7 +27,7 @@ namespace OilRefineryTest.Tools
                             Int32.Parse(str.Substring(0, 2)),
                             Int32.Parse(str.Substring(11, 2)),
                             Int32.Parse(str.Substring(14, 2)),
-                            Int32.Parse(str.Substring(16, 2)));
+                            Int32.Parse(str.Substring(17, 2)));
                         break;
                     case 18:
                         dt = new DateTime(Int32.Parse(str.Substring(6, 4)),
