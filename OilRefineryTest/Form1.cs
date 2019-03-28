@@ -52,7 +52,7 @@ namespace OilRefineryTest
                 //listView1.Items.Add(addTask.resultDate.ToString().Substring(0, 15));
                 //descriptions.Add(addTask.description);
                 //notificationManager.addTask(addTask.resultDate, addTask.resultName);
-                savedInstanceManager.append(addTask.resultDate, addTask.resultName, addTask.description);
+                savedInstanceManager.addTask(addTask.resultDate, addTask.resultName, addTask.description);
             }
         }
         //Изменение задачи в коллекции через админ панель
@@ -89,7 +89,7 @@ namespace OilRefineryTest
             }
         }
         //Добавление точки в элемент Chart через панель управления
-        private void button_AddData_Click(object sender, EventArgs e)
+        private void button_AddPoint_Click(object sender, EventArgs e)
         {
             //Получение активной страницы таб панэли
             var tabPage = tabPane.TabPages[tabPane.SelectedIndex];
@@ -102,6 +102,7 @@ namespace OilRefineryTest
             if (inputBox.success())
             {
                 points.Add(new DataPoint(inputBox.result[0], inputBox.result[1]));
+                savedInstanceManager.addPoint(tabPane.SelectedIndex, inputBox.result[0], inputBox.result[1]);
             }
         }
 
@@ -113,26 +114,47 @@ namespace OilRefineryTest
         private void formClosing(object sender, EventArgs e)
         {
             savedInstanceManager.save();
+            savedInstanceManager.savePoints();
             //savedInstanceManager.clear();
-            //savedInstanceManager.add(checkedListBox_Tasks.Items, listView1.Items, notificationManager);
+            //savedInstanceManager.addPoint(checkedListBox_Tasks.Items, listView1.Items, notificationManager);
             //savedInstanceManager.save();
         }
 
         private void loadData()
         {
-            if (savedInstanceManager.hasSavedFile())
+            if (savedInstanceManager.hasSavedFileXml())
             {
-                ArrayList ar = savedInstanceManager.load();
+                ArrayList ar = savedInstanceManager.loadXml();
                 foreach (SavedInstance savedInstance in ar)
                 {
                     addTask((DateTime)savedInstance.dateTime, savedInstance.taskName, savedInstance.taskDescription);
                 }
             }
-            //if (savedInstanceManager.hasSavedFile())
+
+            if (true)//savedInstanceManager.hasSavedFilePoints())
+            {
+                foreach (myPoint point in savedInstanceManager.loadPoints())
+                {
+                    switch (point.index)
+                    {
+                        case 0:
+                            chart_Temperature.Series[0].Points.Add(new DataPoint(point.x,point.y));
+                            break;
+                        case 1:
+                            chart_CO2.Series[0].Points.Add(new DataPoint(point.x, point.y));
+                            break;
+                        case 2:
+                            chart_Oil.Series[0].Points.Add(new DataPoint(point.x, point.y));
+                            break;
+                    }
+                }
+
+            }
+            //if (savedInstanceManager.hasSavedFileXml())
             //{
-            //    loadedItemsTasks = (ListBox.ObjectCollection) savedInstanceManager.load()[0];
-            //    loadedItemsDate = (ListView.ListViewItemCollection) savedInstanceManager.load()[1];
-            //    notificationManager = (NotificationManager) savedInstanceManager.load()[2];
+            //    loadedItemsTasks = (ListBox.ObjectCollection) savedInstanceManager.loadXml()[0];
+            //    loadedItemsDate = (ListView.ListViewItemCollection) savedInstanceManager.loadXml()[1];
+            //    notificationManager = (NotificationManager) savedInstanceManager.loadXml()[2];
             //    listView1.Items.AddRange(loadedItemsDate);
             //    checkedListBox_Tasks.Items.AddRange(loadedItemsTasks);
             //}

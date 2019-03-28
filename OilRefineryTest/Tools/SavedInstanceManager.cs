@@ -7,48 +7,43 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using System.Xml;
+using System.Xml.Serialization;
 
 namespace OilRefineryTest.Tools
 {
     [Serializable]
+    public struct myPoint
+    {
+        public int index { get; set; }
+        public double x { get; set; }
+        public double y { get; set; }
+    }
     class SavedInstanceManager
     {
+        private ArrayList savedPoints = new ArrayList();
+        private FileStream fs;
+        private BinaryFormatter bf = new BinaryFormatter();
+
         private ArrayList savedInstances = new ArrayList();
         private XmlDocument xDoc = new XmlDocument();
-        private const string PATH = "Data\\SavedInstance.xml";
 
-        //private SavedInstance savedInstance = new SavedInstance();
-        //private ArrayList itemsSet = new ArrayList(3);
-        //private FileStream fs;
-        //BinaryFormatter bf = new BinaryFormatter();
-
+        private const string PATHXML = "Data\\SavedInstance.xml";
+        private const string PATHPOINTS = "Data\\SavedInstance.txt";
+        
         public SavedInstanceManager()
         {
-            if (hasSavedFile())
+            if (hasSavedFileXml())
             {
-                xDoc.Load(PATH);
+                xDoc.Load(PATHXML);
             }
             else
             {
                 xDoc = new XmlDocument();
             }
         }
-        
-        public void add(Object date, Object name, Object notification)
-        {
-            //if (fs == null)
-            //{
-            //    Directory.CreateDirectory("Data");
-            //    fs = new FileStream("Data\\SavedInstanceManager.dat", FileMode.OpenOrCreate);
-            //}
-            //itemsSet.Add(task);
-            //itemsSet.Add(date);
-            //itemsSet.Add(notification);
-            //savedInstance.add(itemsSet);
-        }
-
-        public void append(DateTime dt, string taskName, string taskDescription)
+        public void addTask(DateTime dt, string taskName, string taskDescription)
         {
 
             XmlElement xRoot = xDoc.DocumentElement;
@@ -77,18 +72,37 @@ namespace OilRefineryTest.Tools
             task.AppendChild(description);
 
             xRoot.AppendChild(task);
+            save();
+        }
+        public void addPoint(int index, double x, double y)
+        {
+            using (fs = new FileStream(PATHPOINTS, FileMode.OpenOrCreate))
+            {
+                myPoint mp = new myPoint();
+                mp.index = index;
+                mp.x = x;
+                mp.y = y;
+                savedPoints.Add(mp);
+                bf.Serialize(fs, savedPoints);
+            }
         }
 
         public void save()
         {
-            xDoc.Save(PATH);
-            //bf.Serialize(fs, savedInstance);
+            xDoc.Save(PATHXML);
         }
 
-        public ArrayList load()
+        public void savePoints()
+        {
+            using (fs = new FileStream(PATHPOINTS, FileMode.Create))
+            {
+                bf.Serialize(fs, savedPoints);
+            }
+        }
+        public ArrayList loadXml()
         {
             XmlDocument xDoc = new XmlDocument();
-            xDoc.Load(PATH);
+            xDoc.Load(PATHXML);
             // получим корневой элемент
             XmlElement xRoot = xDoc.DocumentElement;
             // обход всех узлов в корневом элементе
@@ -102,19 +116,16 @@ namespace OilRefineryTest.Tools
                     if (childnode.Name == "name")
                     {
                         savedInstance.taskName = childnode.InnerText;
-                        Console.WriteLine("name: {0}", childnode.InnerText);
                     }
                     // если узел date
                     if (childnode.Name == "date")
                     {
                         savedInstance.dateTime = childnode.InnerText;
-                        Console.WriteLine("date: {0}", childnode.InnerText);
                     }
                     // если узел description
                     if (childnode.Name == "description")
                     {
                         savedInstance.taskDescription = childnode.InnerText;
-                        Console.WriteLine("description: {0}", childnode.InnerText);
                     }
                 }
                 savedInstances.Add(savedInstance);
@@ -128,20 +139,50 @@ namespace OilRefineryTest.Tools
             //return (((SavedInstance) bf.Deserialize(fs)).getItems());
             return savedInstances;
         }
-
-        public bool hasSavedFile()
+        public ArrayList loadPoints()
         {
-            return File.Exists(PATH);
+            if (hasSavedFilePoints())
+            {
+                using (fs = new FileStream(PATHPOINTS, FileMode.Open))
+                {
+                    savedPoints = (ArrayList) bf.Deserialize(fs);
+                }
+            }
+            return savedPoints;
         }
 
+        public bool hasSavedFileXml()
+        {
+            return File.Exists(PATHXML);
+        }
+        public bool hasSavedFilePoints()
+        {
+            return File.Exists(PATHPOINTS);
+        }
         public void clear()
         {
-            if (hasSavedFile())
+            if (hasSavedFileXml())
             {
-                File.Delete(PATH);
+                File.Delete(PATHXML);
                 savedInstances.Clear();
             }
         }
-        
+
+        private ArrayList randomPointsGenerator()
+        {
+            myPoint mP;
+            ArrayList points = new ArrayList();
+            Random rnd = new Random();
+            for (int i = 0; i < 300; i++)
+            {
+                mP = new myPoint();
+                mP.index = rnd.Next(3);
+                mP.x = i + 2;
+                mP.y = i * rnd.Next(4, 20) + 2;
+                points.Add(mP);
+            }
+            return points;
+        }
+
     }
 }
