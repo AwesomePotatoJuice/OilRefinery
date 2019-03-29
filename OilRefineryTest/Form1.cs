@@ -14,7 +14,8 @@ using System.Windows.Forms.DataVisualization.Charting;
 using OilRefineryTest.Tools;
 using OilRefineryTest.Util;
 using Timer = System.Threading.Timer;
-using System.Collections;
+using System.IO;
+using System.Security.Cryptography;
 
 namespace OilRefineryTest
 {
@@ -22,14 +23,46 @@ namespace OilRefineryTest
     {
         private readonly SavedInstanceManager savedInstanceManager = new SavedInstanceManager();
         private readonly NotificationManager notificationManager;
+        private const string PATH_TO_SHA1 = "Data\\secure.byt";
         private ArrayList descriptions = new ArrayList();
+
+        private readonly int userType;
+        //private ArrayList usersList = new ArrayList();
         public Form1()
         {
+            Login login = new Login();
+            if (login.userType != 4)
+            {
+                login.ShowDialog();
+            }
+            userType = login.userType;
             InitializeComponent();
+            if (userType == 0)
+            {
+                adminPane.Visible = false;
+                userPane.Visible = false;
+                servicePane.Visible = false;
+                testPane.Visible = false;
+            }
+            if (userType == 1)
+            {
+                servicePane.Visible = false;
+            }
             this.WindowState = FormWindowState.Maximized;
             notificationManager = new NotificationManager(notifyIcon1);
             this.FormClosing += formClosing;
             loadData();
+
+            if (userType == 4)
+            {
+                UserCreate userCreate = new UserCreate(4);
+                do
+                {
+                    userCreate.ShowDialog();
+                    Secure.createUser(userCreate.userName, userCreate.password, userCreate.userType);
+                } while (!userCreate.success);
+                
+            }
         }
 
 
@@ -167,6 +200,54 @@ namespace OilRefineryTest
             listView1.Items.Add(dt.ToString().Substring(0, 15));
             descriptions.Add(taskDescription);
             notificationManager.addTask(dt, taskName);
+        }
+
+        private void buttonCreateUser_Click(object sender, EventArgs e)
+        {
+            createUser();
+        }
+
+        private void button_CheckSecureSystem_Click(object sender, EventArgs e)
+        {
+            using (FileStream fs = new FileStream(PATH_TO_SHA1, FileMode.Open))
+            {
+                byte[] byteBufferAllFile = new byte[fs.Length];
+                fs.Read(byteBufferAllFile, 0, byteBufferAllFile.Length);
+
+                byte[] byteBufferType = new byte[4];
+                byte[] byteBufferSHA1 = new byte[20];
+                int count = 0;
+                do
+                {
+                    Array.Copy(byteBufferAllFile, count*24, byteBufferType, 0, 4);
+                    Array.Copy(byteBufferAllFile, count*24 + 4, byteBufferSHA1, 0, 20);
+
+                    byte[] SHA1 = Secure.ComputeHmacsha1(Encoding.UTF8.GetBytes(textBox_passwordCheck.Text),
+                        Encoding.UTF8.GetBytes(textBox_userNameCheck.Text + "HELIOSONE"));
+
+                    if (SHA1.SequenceEqual(byteBufferSHA1))
+                    {
+                        if (byteBufferType[3] == 1) textBox_userType.Text = "ADMIN";
+                        else
+                        {
+                            if (byteBufferType[3] == 2) textBox_userType.Text = "SYSTEM";
+                            else textBox_userType.Text = "USER";
+                        }
+                    }
+
+                    count++;
+                } while (count < fs.Length/24);
+            }
+        }
+
+        private void createUser()
+        {
+            UserCreate userCreate = new UserCreate();
+            userCreate.ShowDialog();
+            if (userCreate.success)
+            {
+                Secure.createUser(userCreate.userName, userCreate.password, userCreate.userType);
+            }
         }
     }
 }
