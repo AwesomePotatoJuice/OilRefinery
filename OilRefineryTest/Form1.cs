@@ -16,6 +16,7 @@ using OilRefineryTest.Util;
 using Timer = System.Threading.Timer;
 using System.IO;
 using System.Security.Cryptography;
+using System.Diagnostics;
 
 namespace OilRefineryTest
 {
@@ -26,7 +27,8 @@ namespace OilRefineryTest
         private const string PATH_TO_SHA1 = "Data\\secure.byt";
         private ArrayList descriptions = new ArrayList();
 
-        private readonly int userType;
+        private readonly int userType;// = 2;
+        public readonly string userName;// = "system";
         //private ArrayList usersList = new ArrayList();
         public Form1()
         {
@@ -36,6 +38,8 @@ namespace OilRefineryTest
                 login.ShowDialog();
             }
             userType = login.userType;
+            userName = login.userName;
+            login.Close();
             InitializeComponent();
             if (userType == 0)
             {
@@ -80,6 +84,7 @@ namespace OilRefineryTest
             addTask.ShowDialog();
             if (addTask.success())
             {
+                ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, addTask.resultName);
                 this.addTask(addTask.resultDate, addTask.resultName, addTask.description);
                 savedInstanceManager.addTask(addTask.resultDate, addTask.resultName, addTask.description);
             }
@@ -93,6 +98,7 @@ namespace OilRefineryTest
                 changeTask.ShowDialog();
                 if (changeTask.success())
                 {
+                    ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, changeTask.resultName);
                     int index = checkedListBox_Tasks.SelectedIndex;
                     checkedListBox_Tasks.Items.RemoveAt(index);
                     checkedListBox_Tasks.Items.Insert(index, changeTask.resultName);
@@ -107,14 +113,14 @@ namespace OilRefineryTest
         //Удаление задачи в коллекции через админ панель
         private void button_DeleteTask_Click(object sender, EventArgs e)
         {
-            
             if (checkedListBox_Tasks.SelectedIndex != -1)
             {
                 DeleteAcceptor deleteAcceptor = new DeleteAcceptor();
                 deleteAcceptor.ShowDialog();
                 int index = checkedListBox_Tasks.SelectedIndex;
                 if (deleteAcceptor.success())
-                { 
+                {
+                    ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, checkedListBox_Tasks.Items[index].ToString());
                     checkedListBox_Tasks.Items.RemoveAt(index);
                     listView1.Items.RemoveAt(index);
                     savedInstanceManager.deleteTask(index);
@@ -134,6 +140,7 @@ namespace OilRefineryTest
             inputBox.ShowDialog();
             if (inputBox.success())
             {
+                ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, inputBox.result[0].ToString() + inputBox.result[1].ToString());
                 points.Add(new DataPoint(inputBox.result[0], inputBox.result[1]));
                 savedInstanceManager.addPoint(tabPane.SelectedIndex, inputBox.result[0], inputBox.result[1]);
             }
@@ -141,6 +148,7 @@ namespace OilRefineryTest
 
         private void button2_Click(object sender, EventArgs e)
         {
+            ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, "БУТОН КЛИК");
             //notificationManager.addTask(DateTime.Now.AddSeconds(10));
         }
 
@@ -209,6 +217,7 @@ namespace OilRefineryTest
 
         private void button_CheckSecureSystem_Click(object sender, EventArgs e)
         {
+            ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, "ЧЕК СЕКЬЮР СИСТЕМ КЛИК");
             using (FileStream fs = new FileStream(PATH_TO_SHA1, FileMode.Open))
             {
                 byte[] byteBufferAllFile = new byte[fs.Length];
@@ -246,8 +255,24 @@ namespace OilRefineryTest
             userCreate.ShowDialog();
             if (userCreate.success)
             {
+                ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, userCreate.userName);
                 Secure.createUser(userCreate.userName, userCreate.password, userCreate.userType);
             }
+        }
+
+        private void buttonTestJournal_Click(object sender, EventArgs e)
+        {
+            ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, "ТЕСТ ЖУРНАЛ КЛИК");
+            ArrayList readed = ActionRegistrator.readRecord();
+            MessageBox.Show(readed[0].ToString() + readed[1].ToString() + readed[2].ToString());
+        }
+
+        private void buttonOpenJournal_Click(object sender, EventArgs e)
+        {
+            ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, "Чтение журнала");
+            Journal journal = new Journal();
+            journal.ShowDialog();
+            journal.Close();
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using OilRefineryTest.Tools;
+using OilRefineryTest.Util;
 
 namespace OilRefineryTest
 {
@@ -25,14 +26,14 @@ namespace OilRefineryTest
             if (!File.Exists(PATH_TO_SHA1))
             {
                 userType = 4;
+                ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), "Первичный запуск", "Первичный запуск");
                 Hide();
             }
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonLogin_Click(object sender, EventArgs e)
         {
-            
             using (FileStream fs = new FileStream(PATH_TO_SHA1, FileMode.Open))
             {
                 byte[] byteBufferAllFile = new byte[fs.Length];
@@ -82,8 +83,16 @@ namespace OilRefineryTest
             }
 
             if (userType != -1)
+            {
+                ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, "Вход пользователя");
                 Hide();
-            else MessageBox.Show("Неверные имя пользователя или пароль", "", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            else
+            {
+                userName = (userName == null || userName == "") ? "Неизвестно" : userName;
+                MessageBox.Show("Неверные имя пользователя или пароль", "", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, "Неудачная попытка входа.");
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

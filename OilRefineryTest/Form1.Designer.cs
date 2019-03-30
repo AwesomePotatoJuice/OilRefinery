@@ -52,6 +52,7 @@
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.taskManager = new System.Windows.Forms.GroupBox();
             this.testPane = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.textBox_userType = new System.Windows.Forms.TextBox();
             this.button_CheckSecureSystem = new System.Windows.Forms.Button();
             this.textBox_passwordCheck = new System.Windows.Forms.TextBox();
@@ -75,6 +76,8 @@
             this.button_AddData = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.refiningStateBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button4 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabPane.SuspendLayout();
             this.tabPage_Temperatue.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_Temperature)).BeginInit();
@@ -91,6 +94,7 @@
             this.servicePane.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.refiningStateBindingSource)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPane
@@ -239,6 +243,7 @@
             // 
             // testPane
             // 
+            this.testPane.Controls.Add(this.groupBox1);
             this.testPane.Controls.Add(this.textBox_userType);
             this.testPane.Controls.Add(this.button_CheckSecureSystem);
             this.testPane.Controls.Add(this.textBox_passwordCheck);
@@ -246,10 +251,20 @@
             this.testPane.Controls.Add(this.button2);
             this.testPane.Location = new System.Drawing.Point(7, 374);
             this.testPane.Name = "testPane";
-            this.testPane.Size = new System.Drawing.Size(357, 172);
+            this.testPane.Size = new System.Drawing.Size(357, 254);
             this.testPane.TabIndex = 4;
             this.testPane.TabStop = false;
             this.testPane.Text = "Test panel";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(6, 28);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(130, 23);
+            this.button3.TabIndex = 8;
+            this.button3.Text = "НАЖАТЬ КНОПКУ";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.buttonTestJournal_Click);
             // 
             // textBox_userType
             // 
@@ -460,6 +475,27 @@
             // 
             this.refiningStateBindingSource.DataSource = typeof(OilRefinery.RefiningState);
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(6, 57);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(130, 23);
+            this.button4.TabIndex = 9;
+            this.button4.Text = "Открыть журнал";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.buttonOpenJournal_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.button4);
+            this.groupBox1.Location = new System.Drawing.Point(9, 148);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 100);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Journal test";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -495,6 +531,7 @@
             this.servicePane.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.refiningStateBindingSource)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -537,6 +574,9 @@
         private System.Windows.Forms.TextBox textBox_passwordCheck;
         private System.Windows.Forms.TextBox textBox_userNameCheck;
         private System.Windows.Forms.TextBox textBox_userType;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button button4;
     }
 }
 
