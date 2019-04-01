@@ -130,9 +130,14 @@
             this.chart_Temperature.Location = new System.Drawing.Point(3, 3);
             this.chart_Temperature.Name = "chart_Temperature";
             series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
             series1.Legend = "Legend1";
+            series1.MarkerBorderColor = System.Drawing.Color.Black;
+            series1.MarkerBorderWidth = 2;
+            series1.MarkerColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Diamond;
             series1.Name = "Series1";
+            series1.ToolTip = "#VALX{N} #VAL{N}";
             series1.YValuesPerPoint = 4;
             this.chart_Temperature.Series.Add(series1);
             this.chart_Temperature.Size = new System.Drawing.Size(1348, 930);
