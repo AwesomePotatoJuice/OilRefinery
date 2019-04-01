@@ -71,11 +71,6 @@ namespace OilRefineryTest
                 } while (!userCreate.success);
                 
             }
-           
-            chart_Temperature.ChartAreas[0].AxisY.Maximum = 80;
-            chart_CO2.ChartAreas[0].AxisY.Maximum = 100;
-            chart_Oil.ChartAreas[0].AxisY.Maximum = 100;
-
             chart_Temperature.ChartAreas[0].AxisX = new Axis() { Title = "Продолжительность наблюдения,сут" };
             chart_Temperature.ChartAreas[0].AxisY = new Axis() { Title = "Температура,С" };
 
