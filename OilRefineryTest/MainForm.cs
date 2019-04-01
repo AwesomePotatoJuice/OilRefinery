@@ -9,18 +9,16 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using OilRefineryTest.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.IO;
+using OilRefineryTest.Forms;
 using OilRefineryTest.Tools;
 using OilRefineryTest.Util;
-using Timer = System.Threading.Timer;
-using System.IO;
-using System.Security.Cryptography;
-using System.Diagnostics;
+using static OilRefineryTest.Tools.Misc;
 
 namespace OilRefineryTest
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         public readonly string userName;
 
@@ -31,7 +29,7 @@ namespace OilRefineryTest
         private readonly int userType;
         private ArrayList descriptions = new ArrayList();
 
-        public Form1()
+        public MainForm()
         {
             if (!Directory.Exists("Data"))
                 Directory.CreateDirectory("Data");
@@ -100,28 +98,34 @@ namespace OilRefineryTest
             if (savedInstanceManager.hasSavedFilePoints())
             {
                 Dictionary<int, ArrayList> series = savedInstanceManager.loadPoints();
-                for (int i = 0; i < series.Count; i++)
+                int count = series.Count;
+                for (int i = 0; i < count; i++)
                 {
-                    foreach (myPoint point in series[i])
+                    if (!series.ContainsKey(i))
+                    {
+                        count++;
+                        continue;
+                    }
+                    foreach (MyPoint point in series[i])
                     {
                         switch (point.index)
                         {
                             case 0:
-                                if (chart_Temperature.Series.Count < i)
+                                if (chart_Temperature.Series.Count <= i)
                                 {
                                     chart_Temperature.Series.Add(createSeries());
                                 }
                                 chart_Temperature.Series[i].Points.Add(new DataPoint(point.x, point.y));
                                 break;
                             case 1:
-                                if (chart_CO2.Series.Count < i)
+                                if (chart_CO2.Series.Count <= i)
                                 {
                                     chart_CO2.Series.Add(createSeries());
                                 }
                                 chart_CO2.Series[i].Points.Add(new DataPoint(point.x, point.y));
                                 break;
                             case 2:
-                                if (chart_Oil.Series.Count < i)
+                                if (chart_Oil.Series.Count <= i)
                                 {
                                     chart_Oil.Series.Add(createSeries());
                                 }
@@ -247,12 +251,28 @@ namespace OilRefineryTest
                 }
             }
         }
+        private void ButtonCalculate_Click(object sender, EventArgs e)
+        {
+            Dictionary<double, double>[] dictArray = argegatePoints();
+            addAproxPoints(dictArray[0], dictArray[1], dictArray[2]);
+        }
+        private void buttonDeleteSeries_Click(object sender, EventArgs e)
+        {
+            DeleteSeries deleteSeries = new DeleteSeries();
+            deleteSeries.ShowDialog();
+            if (deleteSeries.success)
+            {
+                var tabPage = tabPane.TabPages[tabPane.SelectedIndex];
+                Chart chart = (Chart)tabPage.GetChildAtPoint(new Point(10, 10));
+                chart.Series.RemoveAt(deleteSeries.series - 1);
+            }
+        }
         //---------------------------------------------------------------------Service----Points editing
         private DataPointCollection getDataPointCollection(int index)
         {
             var tabPage = tabPane.TabPages[tabPane.SelectedIndex];
             Chart chart = (Chart)tabPage.GetChildAtPoint(new Point(10, 10));
-            if (chart.Series.Count < index)
+            if (chart.Series.Count <= index)
             {
                 chart.Series.Add(createSeries());
             }
@@ -261,10 +281,101 @@ namespace OilRefineryTest
         private Series createSeries()
         {
             Series series = new Series();
+            series.ChartType = SeriesChartType.FastLine;
             return series;
         }
+        private Dictionary<double, double>[] argegatePoints()
+        {
+            Dictionary<double, double> pointsMapTemperature = new Dictionary<double, double>();
+            Dictionary<double, double> pointsMapCO2 = new Dictionary<double, double>();
+            Dictionary<double, double> pointsMapOil = new Dictionary<double, double>();
+            bool first = true;
+            foreach (Series series in chart_Temperature.Series)
+            {
+                if (first)
+                {
+                    first = false;
+                    continue;
+                }
 
-      
+                foreach (DataPoint point in series.Points)
+                {
+                    if (pointsMapTemperature.ContainsKey(point.XValue))
+                    {
+                        double xp = point.XValue;
+                        double yp = point.YValues[0];
+                        double xm = xp;
+                        double ym = pointsMapTemperature[xp];
+                        ym = (ym + yp)/2;
+                        pointsMapTemperature[point.XValue] = (pointsMapTemperature[point.XValue] + point.YValues[0]) / 2;
+                    }
+                    else pointsMapTemperature.Add(point.XValue, point.YValues[0]);
+                }
+            }
+
+            pointsMapTemperature = pointsMapTemperature.OrderBy(pair => pair.Key).ToDictionary(pair => pair.Key, pair => pair.Value);
+
+
+            foreach (Series series in chart_CO2.Series)
+            {
+
+                for (int i = 1; i < chart_CO2.Series.Count; i++)
+                {
+                    foreach (DataPoint points in chart_CO2.Series[i].Points)
+                    {
+                        if (pointsMapCO2.ContainsKey(points.XValue))
+                        {
+                            pointsMapCO2[points.XValue] = (pointsMapCO2[points.XValue] + points.YValues.Last()) / 2;
+                        }
+                        else pointsMapCO2.Add(points.XValue, points.YValues.Last());
+                    }
+                }
+            }
+            foreach (Series series in chart_Oil.Series)
+            {
+                for (int i = 1; i < chart_Oil.Series.Count; i++)
+                {
+                    foreach (DataPoint points in chart_Oil.Series[i].Points)
+                    {
+                        if (pointsMapOil.ContainsKey(points.XValue))
+                        {
+                            pointsMapOil[points.XValue] = (pointsMapOil[points.XValue] + points.YValues.Last()) / 2;
+                        }
+                        else pointsMapOil.Add(points.XValue, points.YValues.Last());
+                    }
+                }
+            }
+            
+            return new Dictionary<double, double>[3]{pointsMapTemperature, pointsMapCO2, pointsMapCO2};
+        }
+        private void addAproxPoints(Dictionary<double, double> pointsMapTemperature, 
+                                    Dictionary<double, double> pointsMapCO2, 
+                                    Dictionary<double, double> pointsMapOil)
+        {
+            Series aprox1 = createSeries();
+            //aprox1.Name = "Aprox1";
+            chart_Temperature.Series.Add(aprox1);
+            foreach (KeyValuePair<double, double> point in pointsMapTemperature)
+            {
+                aprox1.Points.AddXY(point.Key, point.Value);
+            }
+            Series aprox2 = createSeries();
+            //aprox2.Name = "Aprox2";
+            chart_CO2.Series.Add(aprox2);
+            foreach (KeyValuePair<double, double> point in pointsMapCO2)
+            {
+                aprox2.Points.Add(point.Key, point.Value);
+            }
+            Series aprox3 = createSeries();
+            //aprox3.Name = "Aprox3";
+            chart_CO2.Series.Add(aprox3);
+            foreach (KeyValuePair<double, double> point in pointsMapOil)
+            {
+                aprox3.Points.Add(point.Key, point.Value);
+            }
+        }
+
+        
 
 
 
@@ -318,5 +429,7 @@ namespace OilRefineryTest
             notificationManager.addTask(DateTime.Now.AddSeconds(10));
             */
         }
+
+        
     }
 }

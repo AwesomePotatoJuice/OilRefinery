@@ -22,15 +22,15 @@ namespace OilRefineryTest.Forms
             InitializeComponent();
             if (i == 4)
             {
-                comboBox_userList.Items.Add(Enumerations.userType.SYSTEM);
+                comboBox_userList.Items.Add(Misc.UserType.SYSTEM);
             }
         }
         public UserCreate()
         {
             InitializeComponent();
-            comboBox_userList.Items.Add(Enumerations.userType.USER);
-            comboBox_userList.Items.Add(Enumerations.userType.ADMIN);
-            comboBox_userList.Items.Add(Enumerations.userType.SYSTEM);
+            comboBox_userList.Items.Add(Misc.UserType.USER);
+            comboBox_userList.Items.Add(Misc.UserType.ADMIN);
+            comboBox_userList.Items.Add(Misc.UserType.SYSTEM);
         }
         public string userName
         {

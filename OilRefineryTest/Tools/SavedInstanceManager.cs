@@ -10,16 +10,11 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Xml;
 using System.Xml.Serialization;
+using static OilRefineryTest.Tools.Misc;
 
 namespace OilRefineryTest.Tools
 {
-    [Serializable]
-    public struct myPoint
-    {
-        public int index { get; set; }
-        public double x { get; set; }
-        public double y { get; set; }
-    }
+    
     class SavedInstanceManager
     {
         private ArrayList savedPoints = new ArrayList();
@@ -72,7 +67,7 @@ namespace OilRefineryTest.Tools
             }
             using (fs = new FileStream(PATHPOINTS, FileMode.OpenOrCreate))
             {
-                myPoint mp = new myPoint();
+                MyPoint mp = new MyPoint();
                 mp.index = index;
                 mp.x = x;
                 mp.y = y;
@@ -175,12 +170,12 @@ namespace OilRefineryTest.Tools
 
         private ArrayList randomPointsGenerator()
         {
-            myPoint mP;
+            MyPoint mP;
             ArrayList points = new ArrayList();
             Random rnd = new Random();
             for (int i = 0; i < 300; i++)
             {
-                mP = new myPoint();
+                mP = new MyPoint();
                 mP.index = rnd.Next(3);
                 mP.x = i + 2;
                 mP.y = i * rnd.Next(4, 20) + 2;

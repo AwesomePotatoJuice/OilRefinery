@@ -82,7 +82,7 @@ namespace OilRefineryTest.Util
             notifyIcon.BalloonTipTitle = notification.getTitle();
             notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
             notifyIcon.ShowBalloonTip(2000);
-            ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), Program.form1.userName, notification.getTitle());
+            ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), Program.mainForm.userName, notification.getTitle());
         }
         private void notify(object state, bool repeated)
         {
@@ -98,7 +98,7 @@ namespace OilRefineryTest.Util
             if (!notification.notified)
             {
                 notification.notified = true;
-                ActionRegistrator.addRecord(DateTime.Now, "notify", Program.form1.userName, "Уведомление принято");
+                ActionRegistrator.addRecord(DateTime.Now, "notify", Program.mainForm.userName, "Уведомление принято");
             }
         }
         private void timedOut(object sender, EventArgs e)

@@ -1,6 +1,6 @@
 ﻿namespace OilRefineryTest
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -41,7 +41,7 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tabPane = new System.Windows.Forms.TabControl();
             this.tabPage_Temperatue = new System.Windows.Forms.TabPage();
             this.chart_Temperature = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -76,6 +76,7 @@
             this.controlPane = new System.Windows.Forms.GroupBox();
             this.servicePane = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.buttonCalculate = new System.Windows.Forms.Button();
             this.buttonAddPrevData = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -83,6 +84,7 @@
             this.button_AddData = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.refiningStateBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.buttonDeleteSeries = new System.Windows.Forms.Button();
             this.tabPane.SuspendLayout();
             this.tabPage_Temperatue.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_Temperature)).BeginInit();
@@ -481,6 +483,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.buttonDeleteSeries);
+            this.groupBox2.Controls.Add(this.buttonCalculate);
             this.groupBox2.Controls.Add(this.buttonAddPrevData);
             this.groupBox2.Location = new System.Drawing.Point(0, 92);
             this.groupBox2.Name = "groupBox2";
@@ -488,6 +492,16 @@
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ввод прошлых данных";
+            // 
+            // buttonCalculate
+            // 
+            this.buttonCalculate.Location = new System.Drawing.Point(6, 57);
+            this.buttonCalculate.Name = "buttonCalculate";
+            this.buttonCalculate.Size = new System.Drawing.Size(102, 23);
+            this.buttonCalculate.TabIndex = 11;
+            this.buttonCalculate.Text = "Просчитать";
+            this.buttonCalculate.UseVisualStyleBackColor = true;
+            this.buttonCalculate.Click += new System.EventHandler(this.ButtonCalculate_Click);
             // 
             // buttonAddPrevData
             // 
@@ -545,7 +559,17 @@
             // 
             this.refiningStateBindingSource.DataSource = typeof(OilRefinery.RefiningState);
             // 
-            // Form1
+            // buttonDeleteSeries
+            // 
+            this.buttonDeleteSeries.Location = new System.Drawing.Point(6, 86);
+            this.buttonDeleteSeries.Name = "buttonDeleteSeries";
+            this.buttonDeleteSeries.Size = new System.Drawing.Size(102, 23);
+            this.buttonDeleteSeries.TabIndex = 12;
+            this.buttonDeleteSeries.Text = "Удалить серию";
+            this.buttonDeleteSeries.UseVisualStyleBackColor = true;
+            this.buttonDeleteSeries.Click += new System.EventHandler(this.buttonDeleteSeries_Click);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -559,7 +583,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.tabPane.ResumeLayout(false);
@@ -629,6 +653,8 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button buttonAddPrevData;
+        private System.Windows.Forms.Button buttonCalculate;
+        private System.Windows.Forms.Button buttonDeleteSeries;
     }
 }
 

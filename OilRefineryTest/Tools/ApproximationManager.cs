@@ -6,13 +6,7 @@ using System.Threading.Tasks;
 
 namespace OilRefineryTest.Tools
 {
-    class Enumerations
+    class ApproximationManager
     {
-        public enum userType
-        {
-            USER,
-            ADMIN,
-            SYSTEM
-        }
     }
 }

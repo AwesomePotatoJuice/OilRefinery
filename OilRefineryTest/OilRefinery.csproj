@@ -47,11 +47,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Forms\DeleteSeries.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Forms\DeleteSeries.Designer.cs">
+      <DependentUpon>DeleteSeries.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\About.cs">
       <SubType>Form</SubType>
@@ -109,17 +115,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tools\Enumerations.cs" />
-    <Compile Include="Tools\Misc.cs" />
+    <Compile Include="Tools\ApproximationManager.cs" />
+    <Compile Include="Util\Misc.cs" />
     <Compile Include="Tools\SavedInstance.cs" />
     <Compile Include="Tools\SavedInstanceManager.cs" />
     <Compile Include="Tools\Secure.cs" />
-    <Compile Include="Util\ActionRegistrator.cs" />
-    <Compile Include="Util\Notification.cs" />
-    <Compile Include="Util\NotificationManager.cs" />
+    <Compile Include="Tools\ActionRegistrator.cs" />
+    <Compile Include="Tools\Notification.cs" />
+    <Compile Include="Tools\NotificationManager.cs" />
     <Compile Include="Util\RefiningState.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DeleteSeries.resx">
+      <DependentUpon>DeleteSeries.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\About.resx">
       <DependentUpon>About.cs</DependentUpon>

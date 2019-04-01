@@ -13,5 +13,19 @@ namespace OilRefineryTest.Tools
         {
             return new StackTrace(1).GetFrame(0).GetMethod().Name;
         }
+        public enum UserType
+        {
+            USER,
+            ADMIN,
+            SYSTEM
+        }
+        [Serializable]
+        public struct MyPoint
+        {
+            public int index { get; set; }
+            public double x { get; set; }
+            public double y { get; set; }
+        }
     }
+    
 }

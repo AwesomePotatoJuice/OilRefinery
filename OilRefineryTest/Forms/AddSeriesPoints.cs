@@ -19,6 +19,7 @@ namespace OilRefineryTest.Forms
         public AddSeriesPoints()
         {
             InitializeComponent();
+            points.Clear();
         }
 
         private void buttonOK_Click(object sender, EventArgs e)

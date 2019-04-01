@@ -9,7 +9,7 @@ namespace OilRefineryTest
 {
     static class Program
     {
-        public static Form1 form1;
+        public static MainForm mainForm;
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
@@ -18,9 +18,9 @@ namespace OilRefineryTest
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            form1 = new Form1();
+            mainForm = new MainForm();
 
-            Application.Run(form1);
+            Application.Run(mainForm);
         }
     }
 }
