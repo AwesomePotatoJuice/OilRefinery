@@ -166,7 +166,8 @@ namespace OilRefineryTest
         private void button2_Click(object sender, EventArgs e)
         {
             ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, "БУТОН КЛИК");
-            notificationManager.addTask(DateTime.Now.AddSeconds(2), "Тестовая запись", "Тест");
+            chart_Temperature.ChartAreas[0].AxisY.Maximum = 80;
+            //notificationManager.addTask(DateTime.Now.AddSeconds(2), "Тестовая запись", "Тест");
             //notificationManager.addTask(DateTime.Now.AddSeconds(10));
         }
 
