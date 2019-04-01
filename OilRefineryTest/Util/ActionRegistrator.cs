@@ -20,10 +20,40 @@ namespace OilRefineryTest.Util
                 switch (actionName)
                 {
                     case "button_AddTask_Click":
-                        nameToWrite = "Ti Pidor";
+                        nameToWrite = "Добавление задачи";
                         break;
                     case "button_ChangeTask_Click":
-                        nameToWrite = "Ti Pidor V2.0";
+                        nameToWrite = "Обновление задачи";
+                        break;
+                    case "button_DeleteTask_Click":
+                        nameToWrite = "Удаление задачи";
+                        break;
+                    case "button_AddPoint_Click":
+                        nameToWrite = "Добавление точки";
+                        break;
+                    case "button2_Click":
+                        nameToWrite = "Бутон2Клик";
+                        break;
+                    case "button_CheckSecureSystem_Click":
+                        nameToWrite = "ЧЕК СЕКЬЮР СИСТЕМ КЛИК";
+                        break;
+                    case "createUser":
+                        nameToWrite = "Создание пользвателя";
+                        break;
+                    case "buttonTestJournal_Click":
+                        nameToWrite = "Тест журнала";
+                        break;
+                    case "buttonOpenJournal_Click":
+                        nameToWrite = "Чтение журнала";
+                        break;
+                    case "Login":
+                        nameToWrite = "Первичный вход";
+                        break;
+                    case "buttonLogin_Click":
+                        nameToWrite = "Вход пользователя";
+                        break;
+                    case "notify":
+                        nameToWrite = "Оповещение пользователя";
                         break;
                 }
                 sw.WriteLine(actionName);

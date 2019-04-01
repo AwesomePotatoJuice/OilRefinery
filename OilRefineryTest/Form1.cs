@@ -125,8 +125,8 @@ namespace OilRefineryTest
                     ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, checkedListBox_Tasks.Items[index].ToString());
                     checkedListBox_Tasks.Items.RemoveAt(index);
                     listView1.Items.RemoveAt(index);
-                    savedInstanceManager.deleteTask(index);
                     descriptions.RemoveAt(index);
+                    savedInstanceManager.deleteTask(index);
                 }
             }
         }
