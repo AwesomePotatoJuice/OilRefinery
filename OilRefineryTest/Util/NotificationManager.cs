@@ -23,6 +23,8 @@ namespace OilRefineryTest.Util
         public NotificationManager(NotifyIcon notifyIcon)
         {
             this.notifyIcon = notifyIcon;
+            notifyIcon.BalloonTipClicked += acceptNotification;
+            notifyIcon.BalloonTipClosed += timedOut;
         }
 
         internal void addTask(DateTime dateTime, String description, String name)
@@ -81,19 +83,28 @@ namespace OilRefineryTest.Util
             notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
             notifyIcon.ShowBalloonTip(2000);
             ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), Program.form1.userName, notification.getTitle());
-            notifyIcon.BalloonTipClicked += acceptNotification;
-            notifyIcon.BalloonTipClosed += timedOut;
+        }
+        private void notify(object state, bool repeated)
+        {
+            notification = (Notification)state;
+            notifyIcon.BalloonTipText = notification.getMessage();
+            notifyIcon.BalloonTipTitle = notification.getTitle();
+            notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
+            notifyIcon.ShowBalloonTip(2000);
         }
 
         private void acceptNotification(object sender, EventArgs e)
         {
-            notification.notified = true;
-            ActionRegistrator.addRecord(DateTime.Now, "notify", Program.form1.userName, "Уведомление принято");
+            if (!notification.notified)
+            {
+                notification.notified = true;
+                ActionRegistrator.addRecord(DateTime.Now, "notify", Program.form1.userName, "Уведомление принято");
+            }
         }
         private void timedOut(object sender, EventArgs e)
         {
-            notification.dateTime.AddSeconds(25000);
-            notify(notification);
+            notifyIcon.ShowBalloonTip(2000);
+            notify(notification, true);
         }
     }
 }
