@@ -59,6 +59,12 @@
     <Compile Include="Forms\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AddSeriesPoints.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddSeriesPoints.Designer.cs">
+      <DependentUpon>AddSeriesPoints.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddTask.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\About.resx">
       <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddSeriesPoints.resx">
+      <DependentUpon>AddSeriesPoints.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddTask.resx">
       <DependentUpon>AddTask.cs</DependentUpon>

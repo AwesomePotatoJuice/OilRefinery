@@ -43,13 +43,14 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(939, 437);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(802, 437);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // Journal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(826, 457);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;

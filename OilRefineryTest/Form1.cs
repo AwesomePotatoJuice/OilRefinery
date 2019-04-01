@@ -71,6 +71,7 @@ namespace OilRefineryTest
                 } while (!userCreate.success);
                 
             }
+           
             chart_Temperature.ChartAreas[0].AxisY.Maximum = 80;
             chart_CO2.ChartAreas[0].AxisY.Maximum = 100;
             chart_Oil.ChartAreas[0].AxisY.Maximum = 100;
@@ -144,25 +145,6 @@ namespace OilRefineryTest
                 }
             }
         }
-        //Добавление точки в элемент Chart через панель управления
-        private void button_AddPoint_Click(object sender, EventArgs e)
-        {
-            //Получение активной страницы таб панэли
-            var tabPage = tabPane.TabPages[tabPane.SelectedIndex];
-            //Получение элемента Chart
-            Chart chart = (Chart)tabPage.GetChildAtPoint(new Point(10, 10));
-            var points = chart.Series[chart.Series.Count - 1].Points;
-            //Передача последней точки в окно ввода, если имеется и ввод новой точки
-            InputBox inputBox = points.Count != 0 ? new InputBox(points.Last().XValue, points.Last().YValues.Last()) : new InputBox(0, 0);
-            inputBox.ShowDialog();
-            if (inputBox.success())
-            {
-                ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, inputBox.result[0].ToString() + inputBox.result[1].ToString());
-                points.Add(new DataPoint(inputBox.result[0], inputBox.result[1]));
-                savedInstanceManager.addPoint(tabPane.SelectedIndex, inputBox.result[0], inputBox.result[1]);
-            }
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, "БУТОН КЛИК");
@@ -292,6 +274,40 @@ namespace OilRefineryTest
             Journal journal = new Journal();
             journal.Show();
             //journal.Close();
+        }
+        //Добавление точки в элемент Chart через панель управления
+        private void button_AddPoint_Click(object sender, EventArgs e)
+        {
+            var points = getDataPointCollection(0);
+            //Передача последней точки в окно ввода, если имеется и ввод новой точки
+            InputBox inputBox = points.Count != 0 ? new InputBox(points.Last().XValue, points.Last().YValues.Last()) : new InputBox(0, 0);
+            inputBox.ShowDialog();
+            if (inputBox.success())
+            {
+                points.Add(new DataPoint(inputBox.result[0], inputBox.result[1]));
+
+                ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, inputBox.result[0].ToString() + inputBox.result[1].ToString());
+                savedInstanceManager.addPoint(tabPane.SelectedIndex, inputBox.result[0], inputBox.result[1]);
+            }
+        }
+        private void buttonAddPrevDate_Click(object sender, EventArgs e)
+        {
+            var points = getDataPointCollection(1);
+            AddSeriesPoints addSeriesPoints = new AddSeriesPoints();
+            addSeriesPoints.ShowDialog();
+            for (int i = 0; i < addSeriesPoints.points.Count; i+=2)
+            {
+                points.Add(new DataPoint((double)addSeriesPoints.points[i], (double)addSeriesPoints.points[i + 1]));
+            }
+        }
+
+        private DataPointCollection getDataPointCollection(int index)
+        {
+            //Получение активной страницы таб панэли
+            var tabPage = tabPane.TabPages[tabPane.SelectedIndex];
+            //Получение элемента Chart
+            Chart chart = (Chart)tabPage.GetChildAtPoint(new Point(10, 10));
+            return chart.Series[index].Points;
         }
     }
 }

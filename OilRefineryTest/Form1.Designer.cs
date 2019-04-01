@@ -32,12 +32,15 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabPane = new System.Windows.Forms.TabControl();
             this.tabPage_Temperatue = new System.Windows.Forms.TabPage();
@@ -72,6 +75,8 @@
             this.checkedListBox_Tasks = new System.Windows.Forms.CheckedListBox();
             this.controlPane = new System.Windows.Forms.GroupBox();
             this.servicePane = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.buttonAddPrevData = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button_ChangeData = new System.Windows.Forms.Button();
@@ -93,6 +98,7 @@
             this.userPane.SuspendLayout();
             this.controlPane.SuspendLayout();
             this.servicePane.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.refiningStateBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -139,7 +145,15 @@
             series1.Name = "Series1";
             series1.ToolTip = "#VALX{N} #VAL{N}";
             series1.YValuesPerPoint = 4;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "Legend1";
+            series2.MarkerBorderColor = System.Drawing.Color.Blue;
+            series2.MarkerBorderWidth = 2;
+            series2.MarkerColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            series2.Name = "Series2";
             this.chart_Temperature.Series.Add(series1);
+            this.chart_Temperature.Series.Add(series2);
             this.chart_Temperature.Size = new System.Drawing.Size(1348, 930);
             this.chart_Temperature.TabIndex = 1;
             // 
@@ -163,11 +177,15 @@
             this.chart_CO2.Legends.Add(legend2);
             this.chart_CO2.Location = new System.Drawing.Point(3, 3);
             this.chart_CO2.Name = "chart_CO2";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart_CO2.Series.Add(series2);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series2";
+            this.chart_CO2.Series.Add(series3);
+            this.chart_CO2.Series.Add(series4);
             this.chart_CO2.Size = new System.Drawing.Size(1348, 930);
             this.chart_CO2.TabIndex = 1;
             // 
@@ -192,11 +210,15 @@
             this.chart_Oil.Legends.Add(legend3);
             this.chart_Oil.Location = new System.Drawing.Point(3, 3);
             this.chart_Oil.Name = "chart_Oil";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chart_Oil.Series.Add(series3);
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series5.Legend = "Legend1";
+            series5.Name = "Series1";
+            series6.ChartArea = "ChartArea1";
+            series6.Legend = "Legend1";
+            series6.Name = "Series2";
+            this.chart_Oil.Series.Add(series5);
+            this.chart_Oil.Series.Add(series6);
             this.chart_Oil.Size = new System.Drawing.Size(1348, 930);
             this.chart_Oil.TabIndex = 0;
             // 
@@ -448,6 +470,7 @@
             // 
             // servicePane
             // 
+            this.servicePane.Controls.Add(this.groupBox2);
             this.servicePane.Controls.Add(this.button1);
             this.servicePane.Location = new System.Drawing.Point(9, 173);
             this.servicePane.Name = "servicePane";
@@ -455,6 +478,26 @@
             this.servicePane.TabIndex = 1;
             this.servicePane.TabStop = false;
             this.servicePane.Text = "Служебная панель";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.buttonAddPrevData);
+            this.groupBox2.Location = new System.Drawing.Point(0, 92);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(117, 119);
+            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Ввод прошлых данных";
+            // 
+            // buttonAddPrevData
+            // 
+            this.buttonAddPrevData.Location = new System.Drawing.Point(3, 28);
+            this.buttonAddPrevData.Name = "buttonAddPrevData";
+            this.buttonAddPrevData.Size = new System.Drawing.Size(114, 23);
+            this.buttonAddPrevData.TabIndex = 2;
+            this.buttonAddPrevData.Text = "Ввести данные";
+            this.buttonAddPrevData.UseVisualStyleBackColor = true;
+            this.buttonAddPrevData.Click += new System.EventHandler(this.buttonAddPrevDate_Click);
             // 
             // button1
             // 
@@ -536,6 +579,7 @@
             this.userPane.ResumeLayout(false);
             this.controlPane.ResumeLayout(false);
             this.servicePane.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.refiningStateBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -583,6 +627,8 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button buttonAddPrevData;
     }
 }
 
