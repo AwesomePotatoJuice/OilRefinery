@@ -122,7 +122,6 @@
             // 
             // chart_Temperature
             // 
-            chartArea1.AxisX.Title = "ЖОПА";
             chartArea1.Name = "ChartArea1";
             this.chart_Temperature.ChartAreas.Add(chartArea1);
             this.chart_Temperature.Dock = System.Windows.Forms.DockStyle.Top;

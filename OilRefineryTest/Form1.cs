@@ -72,8 +72,20 @@ namespace OilRefineryTest
                 
             }
             Axis ax = new Axis();
-            ax.Title = "Частота";
+            ax.Title = "Продолжительность наблюдения,сут";
             chart_Temperature.ChartAreas[0].AxisX = ax;
+            Axis ay = new Axis();
+            ay.Title = "Температура,С";
+            chart_Temperature.ChartAreas[0].AxisY = ay;
+            ax.Title = "Продолжительность наблюдения,сут";
+            chart_CO2.ChartAreas[0].AxisX = ax;
+            ay.Title = "Содержание СО2";
+            chart_CO2.ChartAreas[0].AxisY = ay;
+            ax.Title = "Продолжительность наблюдения,сут";
+            chart_Oil.ChartAreas[0].AxisX = ax;
+            ay.Title = "Степень распада нефтепродуктов,%";
+            chart_Oil.ChartAreas[0].AxisY = ay;
+
         }
 
 
