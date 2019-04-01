@@ -42,7 +42,9 @@ namespace OilRefineryTest
             userType = login.userType;
             userName = login.userName;
             login.Close();
+
             InitializeComponent();
+
             if (userType == 0)
             {
                 adminPane.Visible = false;
@@ -69,6 +71,9 @@ namespace OilRefineryTest
                 } while (!userCreate.success);
                 
             }
+            Axis ax = new Axis();
+            ax.Title = "Частота";
+            chart_Temperature.ChartAreas[0].AxisX = ax;
         }
 
 
@@ -152,6 +157,7 @@ namespace OilRefineryTest
         private void button2_Click(object sender, EventArgs e)
         {
             ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, "БУТОН КЛИК");
+            notificationManager.addTask(DateTime.Now.AddSeconds(2), "Тестовая запись", "Тест");
             //notificationManager.addTask(DateTime.Now.AddSeconds(10));
         }
 

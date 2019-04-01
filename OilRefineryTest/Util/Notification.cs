@@ -8,7 +8,7 @@ namespace OilRefineryTest.Util
 {
     class Notification
     {
-        private DateTime dateTime;
+        public DateTime dateTime { get; set; }
 
         private String message, title;
         public bool notified = false;

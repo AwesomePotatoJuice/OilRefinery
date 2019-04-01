@@ -19,6 +19,7 @@ namespace OilRefineryTest.Util
         private NotifyIcon notifyIcon;
         private ArrayList notifications = new ArrayList();
         private ArrayList notificationsOld = new ArrayList();
+        private Notification notification;
         public NotificationManager(NotifyIcon notifyIcon)
         {
             this.notifyIcon = notifyIcon;
@@ -74,19 +75,25 @@ namespace OilRefineryTest.Util
         }
         private void notify(object state)
         {
-            Notification notification = (Notification) state;
+            notification = (Notification) state;
             notifyIcon.BalloonTipText = notification.getMessage();
             notifyIcon.BalloonTipTitle = notification.getTitle();
             notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
-            notifyIcon.ShowBalloonTip(1000);
-            notification.notified = true;
+            notifyIcon.ShowBalloonTip(2000);
             ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), Program.form1.userName, notification.getTitle());
             notifyIcon.BalloonTipClicked += acceptNotification;
+            notifyIcon.BalloonTipClosed += timedOut;
         }
 
         private void acceptNotification(object sender, EventArgs e)
         {
+            notification.notified = true;
             ActionRegistrator.addRecord(DateTime.Now, "notify", Program.form1.userName, "Уведомление принято");
+        }
+        private void timedOut(object sender, EventArgs e)
+        {
+            notification.dateTime.AddSeconds(25000);
+            notify(notification);
         }
     }
 }
