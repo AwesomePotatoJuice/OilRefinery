@@ -133,6 +133,7 @@
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series1.Legend = "Legend1";
             series1.Name = "Series1";
+            series1.YValuesPerPoint = 4;
             this.chart_Temperature.Series.Add(series1);
             this.chart_Temperature.Size = new System.Drawing.Size(1348, 930);
             this.chart_Temperature.TabIndex = 1;
