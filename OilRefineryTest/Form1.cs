@@ -84,7 +84,7 @@ namespace OilRefineryTest
             addTask.ShowDialog();
             if (addTask.success())
             {
-                ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, addTask.resultName);
+                ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, "Добавление задачи");
                 this.addTask(addTask.resultDate, addTask.resultName, addTask.description);
                 savedInstanceManager.addTask(addTask.resultDate, addTask.resultName, addTask.description);
             }
@@ -104,10 +104,7 @@ namespace OilRefineryTest
                     checkedListBox_Tasks.Items.Insert(index, changeTask.resultName);
                     listView1.Items.RemoveAt(index);
                     listView1.Items.Insert(index, changeTask.resultDate.ToString().Substring(0, 16));
-                    descriptions.RemoveAt(index);
-                    descriptions.Insert(index, changeTask.description);
                     notificationManager.addTask(changeTask.resultDate, changeTask.description, changeTask.resultName);
-                   // notificationManager.addTask(changeTask.resultDate, changeTask.resultName);
                     savedInstanceManager.deleteTask(index);
                     savedInstanceManager.addTask(changeTask.resultDate, changeTask.resultName, "description", index);
                 }
@@ -211,7 +208,7 @@ namespace OilRefineryTest
             checkedListBox_Tasks.Items.Add(taskName);
             listView1.Items.Add(dt.ToString().Substring(0, 15));
             descriptions.Add(taskDescription);
-            //notificationManager.addTask(dt, taskName);
+            notificationManager.addTask(dt, taskDescription, taskName);
         }
 
         private void buttonCreateUser_Click(object sender, EventArgs e)

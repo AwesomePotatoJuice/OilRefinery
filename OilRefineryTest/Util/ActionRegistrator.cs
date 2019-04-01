@@ -16,7 +16,17 @@ namespace OilRefineryTest.Util
             using (StreamWriter sw = new StreamWriter(PATH_TO_FILE, true))
             {
                 sw.WriteLine(actionTime.ToString());
-                sw.WriteLine(actionName);
+                string nameToWrite = "";
+                switch (actionName)
+                {
+                    case "button_AddTask_Click":
+                        nameToWrite = "Ti Pidor";
+                        break;
+                    case "button_ChangeTask_Click":
+                        nameToWrite = "Ti Pidor V2.0";
+                        break;
+                }
+                sw.WriteLine(nameToWrite);
                 sw.WriteLine(actionAutor);
                 sw.WriteLine(specification);
             }
