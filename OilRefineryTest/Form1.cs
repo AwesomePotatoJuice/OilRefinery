@@ -84,7 +84,7 @@ namespace OilRefineryTest
             addTask.ShowDialog();
             if (addTask.success())
             {
-                ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, "Добавление задачи");
+                ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName,addTask.resultName);
                 this.addTask(addTask.resultDate, addTask.resultName, addTask.description);
                 savedInstanceManager.addTask(addTask.resultDate, addTask.resultName, addTask.description);
             }

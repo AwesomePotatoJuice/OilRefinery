@@ -26,7 +26,7 @@ namespace OilRefineryTest
             if (!File.Exists(PATH_TO_SHA1))
             {
                 userType = 4;
-                ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), "Первичный запуск", "Первичный запуск");
+                ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), "Первичный запуск", "-");
                 Hide();
             }
 
@@ -84,7 +84,7 @@ namespace OilRefineryTest
 
             if (userType != -1)
             {
-                ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, "Вход пользователя");
+                ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, "-");
                 Hide();
             }
             else

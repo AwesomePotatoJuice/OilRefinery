@@ -17,43 +17,56 @@ namespace OilRefineryTest.Util
             {
                 sw.WriteLine(actionTime.ToString());
                 string nameToWrite = "";
+                string specificationToWrite;
                 switch (actionName)
                 {
                     case "button_AddTask_Click":
                         nameToWrite = "Добавление задачи";
+                        specificationToWrite = specification;
                         break;
                     case "button_ChangeTask_Click":
                         nameToWrite = "Обновление задачи";
+                        specificationToWrite = specification;
                         break;
                     case "button_DeleteTask_Click":
                         nameToWrite = "Удаление задачи";
+                        specificationToWrite = specification;
                         break;
                     case "button_AddPoint_Click":
                         nameToWrite = "Добавление точки";
+                        specificationToWrite = specification;
                         break;
                     case "button2_Click":
                         nameToWrite = "Бутон2Клик";
+                        specificationToWrite = specification;
                         break;
                     case "button_CheckSecureSystem_Click":
                         nameToWrite = "ЧЕК СЕКЬЮР СИСТЕМ КЛИК";
+                        specificationToWrite = specification;
                         break;
                     case "createUser":
                         nameToWrite = "Создание пользвателя";
+                        specificationToWrite = specification;
                         break;
                     case "buttonTestJournal_Click":
                         nameToWrite = "Тест журнала";
+                        specificationToWrite = specification;
                         break;
                     case "buttonOpenJournal_Click":
                         nameToWrite = "Чтение журнала";
+                        specificationToWrite = specification;
                         break;
                     case "Login":
                         nameToWrite = "Первичный вход";
+                        specificationToWrite = specification;
                         break;
                     case "buttonLogin_Click":
                         nameToWrite = "Вход пользователя";
+                        specificationToWrite = specification;
                         break;
                     case "notify":
                         nameToWrite = "Оповещение пользователя";
+                        specificationToWrite = specification;
                         break;
                 }
                 sw.WriteLine(nameToWrite);
