@@ -17,6 +17,13 @@ namespace OilRefineryTest.Forms
         public AddTask()
         {
             InitializeComponent();
+            DateTime now = DateTime.Now;
+            string hours = (now.Hour.ToString().Length == 1) ? "0" + now.Hour : now.Hour.ToString();
+            string minutes = (now.Minute.ToString().Length == 1) ? "0" + now.Minute : now.Minute.ToString();
+            monthCalendar1.SelectionEnd = now;
+            textBox1.Text = "Some title " + now.ToShortDateString();
+            textBox2.Text = "Some description " + now.ToShortDateString();
+            maskedTextBox1.Text = hours + ":" + minutes;
         }
         public string resultName
         {
@@ -29,7 +36,7 @@ namespace OilRefineryTest.Forms
         {
             get
             {
-                DateTime dt = monthCalendar1.SelectionEnd;
+                DateTime dt = monthCalendar1.SelectionEnd.Date;
                 String txt = maskedTextBox1.Text.Substring(3, 2);
                 dt = dt.AddHours(Double.Parse(maskedTextBox1.Text.Substring(0, 2)));
                 dt = dt.AddMinutes(Double.Parse(maskedTextBox1.Text.Substring(3, 2)));

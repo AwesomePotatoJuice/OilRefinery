@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OilRefineryTest.Tools;
+
 //using Timer = System.Windows.Forms.Timer;
 
 namespace OilRefineryTest.Util
@@ -37,6 +39,10 @@ namespace OilRefineryTest.Util
             {
                 if (((Notification)notifications[i]).notified) continue;
                 DateTime dt = ((Notification)notifications[i]).getDateTime();
+                if (dt.CompareTo(DateTime.Now) != 1)
+                {
+                    continue;
+                }
                 int delay = Convert.ToInt32(dt.Subtract(DateTime.Now).TotalMilliseconds);
 
                 if (delay <= 1000)
@@ -74,6 +80,7 @@ namespace OilRefineryTest.Util
             notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
             notifyIcon.ShowBalloonTip(1000);
             notification.notified = true;
+            ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), Program.form1.userName, "Оповещение пользователя");
         }
     }
 }

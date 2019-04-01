@@ -13,30 +13,39 @@ namespace OilRefineryTest.Tools
     [Serializable]
     class SavedInstance
     {
-        private ArrayList items = new ArrayList();
-
-        private NotificationManager notificationManager;
-        private ListView.ListViewItemCollection loadedItemsDate;
-        private ListBox.ObjectCollection loadedItemsTasks;
-
-
-        public void add(ArrayList controls)
+        public Object dateTime
         {
-            loadedItemsTasks = (ListBox.ObjectCollection)controls[0];
-            loadedItemsDate = (ListView.ListViewItemCollection)controls[1];
-            notificationManager = (NotificationManager)controls[2];
-            //items.Add(control);
+            get { return dt; }
+            set
+            {
+                string str = (value).ToString();
+                switch (str.Length)
+                {
+                    case 19:
+                        dt = new DateTime(Int32.Parse(str.Substring(6, 4)),
+                            Int32.Parse(str.Substring(3, 2)),
+                            Int32.Parse(str.Substring(0, 2)),
+                            Int32.Parse(str.Substring(11, 2)),
+                            Int32.Parse(str.Substring(14, 2)),
+                            Int32.Parse(str.Substring(17, 2)));
+                        break;
+                    case 18:
+                        dt = new DateTime(Int32.Parse(str.Substring(6, 4)),
+                            Int32.Parse(str.Substring(3, 2)),
+                            Int32.Parse(str.Substring(0, 2)),
+                            Int32.Parse(str.Substring(11, 1)),
+                            Int32.Parse(str.Substring(13, 2)),
+                            Int32.Parse(str.Substring(16, 2)));
+                        break;
+                }
+
+                
+            }
         }
 
-        public ArrayList getItems()
-        {
-            return items;
-        }
+        private DateTime dt;
 
-        private void compose()
-        {
-
-        }
-
+        public string taskName { get; set; }
+        public string taskDescription { get; set; }
     }
 }

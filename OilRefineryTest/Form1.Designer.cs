@@ -29,30 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(1D, 1D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(2D, 2D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint3 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(5D, 5D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint4 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(10D, 7D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint5 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(20D, 8D);
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint6 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(1D, 1D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint7 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(2D, 2D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint8 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(5D, 5D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint9 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(10D, 7D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint10 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(20D, 8D);
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint11 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(1D, 1D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint12 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(2D, 2D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint13 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(5D, 5D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint14 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(10D, 7D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint15 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(20D, 8D);
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabPane = new System.Windows.Forms.TabControl();
             this.tabPage_Temperatue = new System.Windows.Forms.TabPage();
@@ -66,21 +51,33 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.taskManager = new System.Windows.Forms.GroupBox();
+            this.testPane = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.textBox_userType = new System.Windows.Forms.TextBox();
+            this.button_CheckSecureSystem = new System.Windows.Forms.Button();
+            this.textBox_passwordCheck = new System.Windows.Forms.TextBox();
+            this.textBox_userNameCheck = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.listView1 = new System.Windows.Forms.ListView();
             this.adminPane = new System.Windows.Forms.GroupBox();
+            this.userPane = new System.Windows.Forms.GroupBox();
+            this.buttonOpenUserList = new System.Windows.Forms.Button();
+            this.buttonChangeUser = new System.Windows.Forms.Button();
+            this.buttonCreateUser = new System.Windows.Forms.Button();
             this.button_DeletaTask = new System.Windows.Forms.Button();
             this.button_AddTask = new System.Windows.Forms.Button();
             this.button_ChangeTask = new System.Windows.Forms.Button();
             this.checkedListBox_Tasks = new System.Windows.Forms.CheckedListBox();
             this.controlPane = new System.Windows.Forms.GroupBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.servicePane = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button_ChangeData = new System.Windows.Forms.Button();
             this.button_AddData = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.listView1 = new System.Windows.Forms.ListView();
             this.refiningStateBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button4 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabPane.SuspendLayout();
             this.tabPage_Temperatue.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_Temperature)).BeginInit();
@@ -90,11 +87,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart_Oil)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.taskManager.SuspendLayout();
+            this.testPane.SuspendLayout();
             this.adminPane.SuspendLayout();
+            this.userPane.SuspendLayout();
             this.controlPane.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.servicePane.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.refiningStateBindingSource)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPane
@@ -122,23 +122,18 @@
             // 
             // chart_Temperature
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart_Temperature.ChartAreas.Add(chartArea1);
+            chartArea4.Name = "ChartArea1";
+            this.chart_Temperature.ChartAreas.Add(chartArea4);
             this.chart_Temperature.Dock = System.Windows.Forms.DockStyle.Top;
-            legend1.Name = "Legend1";
-            this.chart_Temperature.Legends.Add(legend1);
+            legend4.Name = "Legend1";
+            this.chart_Temperature.Legends.Add(legend4);
             this.chart_Temperature.Location = new System.Drawing.Point(3, 3);
             this.chart_Temperature.Name = "chart_Temperature";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            series1.Points.Add(dataPoint1);
-            series1.Points.Add(dataPoint2);
-            series1.Points.Add(dataPoint3);
-            series1.Points.Add(dataPoint4);
-            series1.Points.Add(dataPoint5);
-            this.chart_Temperature.Series.Add(series1);
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chart_Temperature.Series.Add(series4);
             this.chart_Temperature.Size = new System.Drawing.Size(1348, 930);
             this.chart_Temperature.TabIndex = 1;
             // 
@@ -155,23 +150,18 @@
             // 
             // chart_CO2
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart_CO2.ChartAreas.Add(chartArea2);
+            chartArea5.Name = "ChartArea1";
+            this.chart_CO2.ChartAreas.Add(chartArea5);
             this.chart_CO2.Dock = System.Windows.Forms.DockStyle.Top;
-            legend2.Name = "Legend1";
-            this.chart_CO2.Legends.Add(legend2);
+            legend5.Name = "Legend1";
+            this.chart_CO2.Legends.Add(legend5);
             this.chart_CO2.Location = new System.Drawing.Point(3, 3);
             this.chart_CO2.Name = "chart_CO2";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            series2.Points.Add(dataPoint6);
-            series2.Points.Add(dataPoint7);
-            series2.Points.Add(dataPoint8);
-            series2.Points.Add(dataPoint9);
-            series2.Points.Add(dataPoint10);
-            this.chart_CO2.Series.Add(series2);
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series5.Legend = "Legend1";
+            series5.Name = "Series1";
+            this.chart_CO2.Series.Add(series5);
             this.chart_CO2.Size = new System.Drawing.Size(1348, 930);
             this.chart_CO2.TabIndex = 1;
             // 
@@ -189,23 +179,18 @@
             // 
             // chart_Oil
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chart_Oil.ChartAreas.Add(chartArea3);
+            chartArea6.Name = "ChartArea1";
+            this.chart_Oil.ChartAreas.Add(chartArea6);
             this.chart_Oil.Dock = System.Windows.Forms.DockStyle.Top;
-            legend3.Name = "Legend1";
-            this.chart_Oil.Legends.Add(legend3);
+            legend6.Name = "Legend1";
+            this.chart_Oil.Legends.Add(legend6);
             this.chart_Oil.Location = new System.Drawing.Point(3, 3);
             this.chart_Oil.Name = "chart_Oil";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            series3.Points.Add(dataPoint11);
-            series3.Points.Add(dataPoint12);
-            series3.Points.Add(dataPoint13);
-            series3.Points.Add(dataPoint14);
-            series3.Points.Add(dataPoint15);
-            this.chart_Oil.Series.Add(series3);
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series6.Legend = "Legend1";
+            series6.Name = "Series1";
+            this.chart_Oil.Series.Add(series6);
             this.chart_Oil.Size = new System.Drawing.Size(1348, 930);
             this.chart_Oil.TabIndex = 0;
             // 
@@ -245,6 +230,7 @@
             // 
             // taskManager
             // 
+            this.taskManager.Controls.Add(this.testPane);
             this.taskManager.Controls.Add(this.listView1);
             this.taskManager.Controls.Add(this.adminPane);
             this.taskManager.Controls.Add(this.checkedListBox_Tasks);
@@ -255,9 +241,85 @@
             this.taskManager.TabStop = false;
             this.taskManager.Text = "Задачи";
             // 
+            // testPane
+            // 
+            this.testPane.Controls.Add(this.groupBox1);
+            this.testPane.Controls.Add(this.textBox_userType);
+            this.testPane.Controls.Add(this.button_CheckSecureSystem);
+            this.testPane.Controls.Add(this.textBox_passwordCheck);
+            this.testPane.Controls.Add(this.textBox_userNameCheck);
+            this.testPane.Controls.Add(this.button2);
+            this.testPane.Location = new System.Drawing.Point(7, 374);
+            this.testPane.Name = "testPane";
+            this.testPane.Size = new System.Drawing.Size(357, 254);
+            this.testPane.TabIndex = 4;
+            this.testPane.TabStop = false;
+            this.testPane.Text = "Test panel";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(6, 28);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(130, 23);
+            this.button3.TabIndex = 8;
+            this.button3.Text = "НАЖАТЬ КНОПКУ";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.buttonTestJournal_Click);
+            // 
+            // textBox_userType
+            // 
+            this.textBox_userType.Location = new System.Drawing.Point(215, 38);
+            this.textBox_userType.Name = "textBox_userType";
+            this.textBox_userType.Size = new System.Drawing.Size(100, 20);
+            this.textBox_userType.TabIndex = 7;
+            // 
+            // button_CheckSecureSystem
+            // 
+            this.button_CheckSecureSystem.Location = new System.Drawing.Point(116, 64);
+            this.button_CheckSecureSystem.Name = "button_CheckSecureSystem";
+            this.button_CheckSecureSystem.Size = new System.Drawing.Size(93, 38);
+            this.button_CheckSecureSystem.TabIndex = 6;
+            this.button_CheckSecureSystem.Text = "Check secure system";
+            this.button_CheckSecureSystem.UseVisualStyleBackColor = true;
+            this.button_CheckSecureSystem.Click += new System.EventHandler(this.button_CheckSecureSystem_Click);
+            // 
+            // textBox_passwordCheck
+            // 
+            this.textBox_passwordCheck.Location = new System.Drawing.Point(215, 85);
+            this.textBox_passwordCheck.Name = "textBox_passwordCheck";
+            this.textBox_passwordCheck.Size = new System.Drawing.Size(100, 20);
+            this.textBox_passwordCheck.TabIndex = 5;
+            // 
+            // textBox_userNameCheck
+            // 
+            this.textBox_userNameCheck.Location = new System.Drawing.Point(215, 64);
+            this.textBox_userNameCheck.Name = "textBox_userNameCheck";
+            this.textBox_userNameCheck.Size = new System.Drawing.Size(100, 20);
+            this.textBox_userNameCheck.TabIndex = 4;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(6, 32);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // listView1
+            // 
+            this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.listView1.Location = new System.Drawing.Point(7, 20);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(110, 348);
+            this.listView1.TabIndex = 3;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.List;
+            // 
             // adminPane
             // 
-            this.adminPane.Controls.Add(this.button2);
+            this.adminPane.Controls.Add(this.userPane);
             this.adminPane.Controls.Add(this.button_DeletaTask);
             this.adminPane.Controls.Add(this.button_AddTask);
             this.adminPane.Controls.Add(this.button_ChangeTask);
@@ -267,6 +329,46 @@
             this.adminPane.TabIndex = 2;
             this.adminPane.TabStop = false;
             this.adminPane.Text = "Админ. панель";
+            // 
+            // userPane
+            // 
+            this.userPane.Controls.Add(this.buttonOpenUserList);
+            this.userPane.Controls.Add(this.buttonChangeUser);
+            this.userPane.Controls.Add(this.buttonCreateUser);
+            this.userPane.Location = new System.Drawing.Point(0, 205);
+            this.userPane.Name = "userPane";
+            this.userPane.Size = new System.Drawing.Size(84, 144);
+            this.userPane.TabIndex = 4;
+            this.userPane.TabStop = false;
+            this.userPane.Text = "Учетные записи";
+            // 
+            // buttonOpenUserList
+            // 
+            this.buttonOpenUserList.Location = new System.Drawing.Point(0, 109);
+            this.buttonOpenUserList.Name = "buttonOpenUserList";
+            this.buttonOpenUserList.Size = new System.Drawing.Size(84, 35);
+            this.buttonOpenUserList.TabIndex = 5;
+            this.buttonOpenUserList.Text = "Открыть список";
+            this.buttonOpenUserList.UseVisualStyleBackColor = true;
+            // 
+            // buttonChangeUser
+            // 
+            this.buttonChangeUser.Location = new System.Drawing.Point(0, 71);
+            this.buttonChangeUser.Name = "buttonChangeUser";
+            this.buttonChangeUser.Size = new System.Drawing.Size(84, 35);
+            this.buttonChangeUser.TabIndex = 4;
+            this.buttonChangeUser.Text = "Изменить";
+            this.buttonChangeUser.UseVisualStyleBackColor = true;
+            // 
+            // buttonCreateUser
+            // 
+            this.buttonCreateUser.Location = new System.Drawing.Point(0, 33);
+            this.buttonCreateUser.Name = "buttonCreateUser";
+            this.buttonCreateUser.Size = new System.Drawing.Size(84, 35);
+            this.buttonCreateUser.TabIndex = 3;
+            this.buttonCreateUser.Text = "Добавить";
+            this.buttonCreateUser.UseVisualStyleBackColor = true;
+            this.buttonCreateUser.Click += new System.EventHandler(this.buttonCreateUser_Click);
             // 
             // button_DeletaTask
             // 
@@ -308,7 +410,7 @@
             // 
             // controlPane
             // 
-            this.controlPane.Controls.Add(this.groupBox1);
+            this.controlPane.Controls.Add(this.servicePane);
             this.controlPane.Controls.Add(this.panel1);
             this.controlPane.Location = new System.Drawing.Point(1756, 42);
             this.controlPane.Name = "controlPane";
@@ -317,15 +419,15 @@
             this.controlPane.TabStop = false;
             this.controlPane.Text = "Панель управления";
             // 
-            // groupBox1
+            // servicePane
             // 
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Location = new System.Drawing.Point(9, 173);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(114, 211);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Служебная панель";
+            this.servicePane.Controls.Add(this.button1);
+            this.servicePane.Location = new System.Drawing.Point(9, 173);
+            this.servicePane.Name = "servicePane";
+            this.servicePane.Size = new System.Drawing.Size(114, 211);
+            this.servicePane.TabIndex = 1;
+            this.servicePane.TabStop = false;
+            this.servicePane.Text = "Служебная панель";
             // 
             // button1
             // 
@@ -362,35 +464,37 @@
             this.button_AddData.TabIndex = 0;
             this.button_AddData.Text = "Ввести данные";
             this.button_AddData.UseVisualStyleBackColor = true;
-            this.button_AddData.Click += new System.EventHandler(this.button_AddData_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(6, 199);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button_AddData.Click += new System.EventHandler(this.button_AddPoint_Click);
             // 
             // notifyIcon1
             // 
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Visible = true;
             // 
-            // listView1
-            // 
-            this.listView1.Location = new System.Drawing.Point(7, 20);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(110, 348);
-            this.listView1.TabIndex = 3;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.List;
-            // 
             // refiningStateBindingSource
             // 
             this.refiningStateBindingSource.DataSource = typeof(OilRefinery.RefiningState);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(6, 57);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(130, 23);
+            this.button4.TabIndex = 9;
+            this.button4.Text = "Открыть журнал";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.buttonOpenJournal_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.button4);
+            this.groupBox1.Location = new System.Drawing.Point(9, 148);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 100);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Journal test";
             // 
             // Form1
             // 
@@ -419,11 +523,15 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.taskManager.ResumeLayout(false);
+            this.testPane.ResumeLayout(false);
+            this.testPane.PerformLayout();
             this.adminPane.ResumeLayout(false);
+            this.userPane.ResumeLayout(false);
             this.controlPane.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
+            this.servicePane.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.refiningStateBindingSource)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -446,7 +554,7 @@
         private System.Windows.Forms.GroupBox adminPane;
         private System.Windows.Forms.GroupBox controlPane;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox servicePane;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button_ChangeData;
         private System.Windows.Forms.Button button_AddData;
@@ -457,6 +565,18 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.GroupBox testPane;
+        private System.Windows.Forms.GroupBox userPane;
+        private System.Windows.Forms.Button buttonOpenUserList;
+        private System.Windows.Forms.Button buttonChangeUser;
+        private System.Windows.Forms.Button buttonCreateUser;
+        private System.Windows.Forms.Button button_CheckSecureSystem;
+        private System.Windows.Forms.TextBox textBox_passwordCheck;
+        private System.Windows.Forms.TextBox textBox_userNameCheck;
+        private System.Windows.Forms.TextBox textBox_userType;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button button4;
     }
 }
 
