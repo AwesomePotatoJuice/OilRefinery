@@ -13,7 +13,8 @@ namespace OilRefineryTest.Forms
 {
     public partial class AddSeriesPoints : Form
     {
-        private bool success;
+        public bool success { get; set; }
+        public int seriesNumber { get; set; }
         public ArrayList points = new ArrayList();
         public AddSeriesPoints()
         {
@@ -22,6 +23,7 @@ namespace OilRefineryTest.Forms
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
+            seriesNumber = Int32.Parse(numericUpDown1.Text);
             success = true;
             Hide();
         }

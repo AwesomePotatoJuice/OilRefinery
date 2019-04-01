@@ -170,32 +170,40 @@ namespace OilRefineryTest
 
             if (true)//savedInstanceManager.hasSavedFilePoints())
             {
-                foreach (myPoint point in savedInstanceManager.loadPoints())
+                Dictionary<int, ArrayList> series = savedInstanceManager.loadPoints();
+                //foreach (myPoint point in savedInstanceManager.loadPoints())
+                
+                for (int i = 0; i < series.Count; i++)
                 {
-                    switch (point.index)
+                    foreach (myPoint point in series[i])
                     {
-                        case 0:
-                            chart_Temperature.Series[0].Points.Add(new DataPoint(point.x,point.y));
-                            break;
-                        case 1:
-                            chart_CO2.Series[0].Points.Add(new DataPoint(point.x, point.y));
-                            break;
-                        case 2:
-                            chart_Oil.Series[0].Points.Add(new DataPoint(point.x, point.y));
-                            break;
+                        switch (point.index)
+                        {
+                            case 0:
+                                if (chart_Temperature.Series.Count < i)
+                                {
+                                    chart_Temperature.Series.Add(createSeries());
+                                }
+                                chart_Temperature.Series[i].Points.Add(new DataPoint(point.x, point.y));
+                                break;
+                            case 1:
+                                if (chart_CO2.Series.Count < i)
+                                {
+                                    chart_CO2.Series.Add(createSeries());
+                                }
+                                chart_CO2.Series[i].Points.Add(new DataPoint(point.x, point.y));
+                                break;
+                            case 2:
+                                if (chart_Oil.Series.Count < i)
+                                {
+                                    chart_Oil.Series.Add(createSeries());
+                                }
+                                chart_Oil.Series[i].Points.Add(new DataPoint(point.x, point.y));
+                                break;
+                        }
                     }
                 }
-
             }
-            //if (savedInstanceManager.hasSavedFileXml())
-            //{
-            //    loadedItemsTasks = (ListBox.ObjectCollection) savedInstanceManager.loadXml()[0];
-            //    loadedItemsDate = (ListView.ListViewItemCollection) savedInstanceManager.loadXml()[1];
-            //    notificationManager = (NotificationManager) savedInstanceManager.loadXml()[2];
-            //    listView1.Items.AddRange(loadedItemsDate);
-            //    checkedListBox_Tasks.Items.AddRange(loadedItemsTasks);
-            //}
-
         }
 
         private void addTask(DateTime dt, string taskName, string taskDescription)
@@ -282,17 +290,23 @@ namespace OilRefineryTest
                 points.Add(new DataPoint(inputBox.result[0], inputBox.result[1]));
 
                 ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, inputBox.result[0].ToString() + inputBox.result[1].ToString());
-                savedInstanceManager.addPoint(tabPane.SelectedIndex, inputBox.result[0], inputBox.result[1]);
+                savedInstanceManager.addPoint(tabPane.SelectedIndex, inputBox.result[0], inputBox.result[1], 0);
             }
         }
         private void buttonAddPrevDate_Click(object sender, EventArgs e)
         {
-            var points = getDataPointCollection(1);
+
             AddSeriesPoints addSeriesPoints = new AddSeriesPoints();
             addSeriesPoints.ShowDialog();
-            for (int i = 0; i < addSeriesPoints.points.Count; i+=2)
+            if (addSeriesPoints.success)
             {
-                points.Add(new DataPoint((double)addSeriesPoints.points[i], (double)addSeriesPoints.points[i + 1]));
+                var points = getDataPointCollection(addSeriesPoints.seriesNumber);
+                for (int i = 0; i < addSeriesPoints.points.Count; i += 2)
+                {
+                    points.Add(new DataPoint((double)addSeriesPoints.points[i], (double)addSeriesPoints.points[i + 1]));
+                    savedInstanceManager.addPoint(tabPane.SelectedIndex, (double)addSeriesPoints.points[i], 
+                                                  (double)addSeriesPoints.points[i + 1], addSeriesPoints.seriesNumber);
+                }
             }
         }
 
@@ -302,7 +316,17 @@ namespace OilRefineryTest
             var tabPage = tabPane.TabPages[tabPane.SelectedIndex];
             //Получение элемента Chart
             Chart chart = (Chart)tabPage.GetChildAtPoint(new Point(10, 10));
+            if (chart.Series.Count < index)
+            {
+                chart.Series.Add(createSeries());
+            }
             return chart.Series[index].Points;
+        }
+
+        private Series createSeries()
+        {
+            Series series = new Series();
+            return series;
         }
     }
 }
