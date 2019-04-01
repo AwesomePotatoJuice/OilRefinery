@@ -484,16 +484,16 @@
             this.groupBox2.Controls.Add(this.buttonAddPrevData);
             this.groupBox2.Location = new System.Drawing.Point(0, 92);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(117, 119);
+            this.groupBox2.Size = new System.Drawing.Size(114, 119);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ввод прошлых данных";
             // 
             // buttonAddPrevData
             // 
-            this.buttonAddPrevData.Location = new System.Drawing.Point(3, 28);
+            this.buttonAddPrevData.Location = new System.Drawing.Point(6, 28);
             this.buttonAddPrevData.Name = "buttonAddPrevData";
-            this.buttonAddPrevData.Size = new System.Drawing.Size(114, 23);
+            this.buttonAddPrevData.Size = new System.Drawing.Size(102, 23);
             this.buttonAddPrevData.TabIndex = 2;
             this.buttonAddPrevData.Text = "Ввести данные";
             this.buttonAddPrevData.UseVisualStyleBackColor = true;

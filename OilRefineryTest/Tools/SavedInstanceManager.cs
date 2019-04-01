@@ -25,6 +25,7 @@ namespace OilRefineryTest.Tools
         private ArrayList savedPoints = new ArrayList();
         private FileStream fs;
         private BinaryFormatter bf = new BinaryFormatter();
+        private Dictionary<int, ArrayList> series = new Dictionary<int, ArrayList>(); 
 
         private ArrayList savedInstances = new ArrayList();
         private XmlDocument xDoc = new XmlDocument();
@@ -63,16 +64,20 @@ namespace OilRefineryTest.Tools
             save();
         }
 
-        public void addPoint(int index, double x, double y)
+        public void addPoint(int index, double x, double y, int series)
         {
+            if (!this.series.ContainsKey(series))
+            {
+                this.series.Add(series, new ArrayList());
+            }
             using (fs = new FileStream(PATHPOINTS, FileMode.OpenOrCreate))
             {
                 myPoint mp = new myPoint();
                 mp.index = index;
                 mp.x = x;
                 mp.y = y;
-                savedPoints.Add(mp);
-                bf.Serialize(fs, savedPoints);
+                this.series[series].Add(mp);
+                bf.Serialize(fs, this.series);
             }
         }
 
@@ -96,7 +101,7 @@ namespace OilRefineryTest.Tools
         {
             using (fs = new FileStream(PATHPOINTS, FileMode.Create))
             {
-                bf.Serialize(fs, savedPoints);
+                bf.Serialize(fs, series);
             }
         }
         public ArrayList loadXml()
@@ -139,16 +144,16 @@ namespace OilRefineryTest.Tools
             //return (((SavedInstance) bf.Deserialize(fs)).getItems());
             return savedInstances;
         }
-        public ArrayList loadPoints()
+        public Dictionary<int, ArrayList> loadPoints()
         {
             if (hasSavedFilePoints())
             {
                 using (fs = new FileStream(PATHPOINTS, FileMode.Open))
                 {
-                    savedPoints = (ArrayList) bf.Deserialize(fs);
+                    series = (Dictionary<int, ArrayList>) bf.Deserialize(fs);
                 }
             }
-            return savedPoints;
+            return series;
         }
 
         public bool hasSavedFileXml()
