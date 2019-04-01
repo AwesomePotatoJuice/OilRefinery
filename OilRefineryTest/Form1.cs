@@ -32,6 +32,8 @@ namespace OilRefineryTest
         //private ArrayList usersList = new ArrayList();
         public Form1()
         {
+            if (!Directory.Exists("Data"))
+                Directory.CreateDirectory("Data");
             Login login = new Login();
             if (login.userType != 4)
             {
@@ -272,8 +274,8 @@ namespace OilRefineryTest
         {
             ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, "Чтение журнала");
             Journal journal = new Journal();
-            journal.ShowDialog();
-            journal.Close();
+            journal.Show();
+            //journal.Close();
         }
     }
 }

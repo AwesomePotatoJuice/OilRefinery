@@ -11,8 +11,8 @@ namespace OilRefineryTest.Util
     class ActionRegistrator
     {
         private const string PATH_TO_FILE = "Data\\journal.byt";
-        public static void addRecord(DateTime actionTime, string actionName, string actionAutor, string specification)
-        {
+        
+        public static void addRecord(DateTime actionTime, string actionName, string actionAutor, string specification){
             using (StreamWriter sw = new StreamWriter(PATH_TO_FILE, true))
             {
                 sw.WriteLine(actionTime.ToString());
@@ -26,7 +26,7 @@ namespace OilRefineryTest.Util
                         nameToWrite = "Ti Pidor V2.0";
                         break;
                 }
-                sw.WriteLine(nameToWrite);
+                sw.WriteLine(actionName);
                 sw.WriteLine(actionAutor);
                 sw.WriteLine(specification);
             }
