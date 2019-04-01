@@ -12,7 +12,8 @@ namespace OilRefineryTest.Util
     {
         private const string PATH_TO_FILE = "Data\\journal.byt";
         
-        public static void addRecord(DateTime actionTime, string actionName, string actionAutor, string specification){
+        public static void addRecord(DateTime actionTime, string actionName, string actionAutor, string specification)
+        {
             using (StreamWriter sw = new StreamWriter(PATH_TO_FILE, true))
             {
                 sw.WriteLine(actionTime.ToString());
