@@ -80,7 +80,13 @@ namespace OilRefineryTest.Util
             notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
             notifyIcon.ShowBalloonTip(1000);
             notification.notified = true;
-            ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), Program.form1.userName, "Оповещение пользователя");
+            ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), Program.form1.userName, notification.getTitle());
+            notifyIcon.BalloonTipClicked += acceptNotification;
+        }
+
+        private void acceptNotification(object sender, EventArgs e)
+        {
+            ActionRegistrator.addRecord(DateTime.Now, "notify", Program.form1.userName, "Уведомление принято");
         }
     }
 }

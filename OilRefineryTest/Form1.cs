@@ -108,7 +108,7 @@ namespace OilRefineryTest
                     listView1.Items.Insert(index, changeTask.resultDate.ToString().Substring(0, 16));
                     notificationManager.addTask(changeTask.resultDate, changeTask.description, changeTask.resultName);
                     savedInstanceManager.deleteTask(index);
-                    savedInstanceManager.addTask(changeTask.resultDate, changeTask.resultName, "description", index);
+                    savedInstanceManager.addTask(changeTask.resultDate, changeTask.resultName, descriptions[index].ToString(), index);
                 }
             }
         }
