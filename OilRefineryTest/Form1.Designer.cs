@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabPane = new System.Windows.Forms.TabControl();
             this.tabPage_Temperatue = new System.Windows.Forms.TabPage();
@@ -52,7 +52,9 @@
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.taskManager = new System.Windows.Forms.GroupBox();
             this.testPane = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.textBox_userType = new System.Windows.Forms.TextBox();
             this.button_CheckSecureSystem = new System.Windows.Forms.Button();
             this.textBox_passwordCheck = new System.Windows.Forms.TextBox();
@@ -76,8 +78,6 @@
             this.button_AddData = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.refiningStateBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.button4 = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabPane.SuspendLayout();
             this.tabPage_Temperatue.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_Temperature)).BeginInit();
@@ -88,13 +88,13 @@
             this.menuStrip1.SuspendLayout();
             this.taskManager.SuspendLayout();
             this.testPane.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.adminPane.SuspendLayout();
             this.userPane.SuspendLayout();
             this.controlPane.SuspendLayout();
             this.servicePane.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.refiningStateBindingSource)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPane
@@ -122,18 +122,18 @@
             // 
             // chart_Temperature
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chart_Temperature.ChartAreas.Add(chartArea4);
+            chartArea1.Name = "ChartArea1";
+            this.chart_Temperature.ChartAreas.Add(chartArea1);
             this.chart_Temperature.Dock = System.Windows.Forms.DockStyle.Top;
-            legend4.Name = "Legend1";
-            this.chart_Temperature.Legends.Add(legend4);
+            legend1.Name = "Legend1";
+            this.chart_Temperature.Legends.Add(legend1);
             this.chart_Temperature.Location = new System.Drawing.Point(3, 3);
             this.chart_Temperature.Name = "chart_Temperature";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.chart_Temperature.Series.Add(series4);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart_Temperature.Series.Add(series1);
             this.chart_Temperature.Size = new System.Drawing.Size(1348, 930);
             this.chart_Temperature.TabIndex = 1;
             // 
@@ -150,18 +150,18 @@
             // 
             // chart_CO2
             // 
-            chartArea5.Name = "ChartArea1";
-            this.chart_CO2.ChartAreas.Add(chartArea5);
+            chartArea2.Name = "ChartArea1";
+            this.chart_CO2.ChartAreas.Add(chartArea2);
             this.chart_CO2.Dock = System.Windows.Forms.DockStyle.Top;
-            legend5.Name = "Legend1";
-            this.chart_CO2.Legends.Add(legend5);
+            legend2.Name = "Legend1";
+            this.chart_CO2.Legends.Add(legend2);
             this.chart_CO2.Location = new System.Drawing.Point(3, 3);
             this.chart_CO2.Name = "chart_CO2";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            this.chart_CO2.Series.Add(series5);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart_CO2.Series.Add(series2);
             this.chart_CO2.Size = new System.Drawing.Size(1348, 930);
             this.chart_CO2.TabIndex = 1;
             // 
@@ -179,18 +179,18 @@
             // 
             // chart_Oil
             // 
-            chartArea6.Name = "ChartArea1";
-            this.chart_Oil.ChartAreas.Add(chartArea6);
+            chartArea3.Name = "ChartArea1";
+            this.chart_Oil.ChartAreas.Add(chartArea3);
             this.chart_Oil.Dock = System.Windows.Forms.DockStyle.Top;
-            legend6.Name = "Legend1";
-            this.chart_Oil.Legends.Add(legend6);
+            legend3.Name = "Legend1";
+            this.chart_Oil.Legends.Add(legend3);
             this.chart_Oil.Location = new System.Drawing.Point(3, 3);
             this.chart_Oil.Name = "chart_Oil";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            this.chart_Oil.Series.Add(series6);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chart_Oil.Series.Add(series3);
             this.chart_Oil.Size = new System.Drawing.Size(1348, 930);
             this.chart_Oil.TabIndex = 0;
             // 
@@ -256,6 +256,17 @@
             this.testPane.TabStop = false;
             this.testPane.Text = "Test panel";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.button4);
+            this.groupBox1.Location = new System.Drawing.Point(9, 148);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 100);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Journal test";
+            // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(6, 28);
@@ -265,6 +276,16 @@
             this.button3.Text = "НАЖАТЬ КНОПКУ";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.buttonTestJournal_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(6, 57);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(130, 23);
+            this.button4.TabIndex = 9;
+            this.button4.Text = "Открыть журнал";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.buttonOpenJournal_Click);
             // 
             // textBox_userType
             // 
@@ -475,27 +496,6 @@
             // 
             this.refiningStateBindingSource.DataSource = typeof(OilRefinery.RefiningState);
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(6, 57);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(130, 23);
-            this.button4.TabIndex = 9;
-            this.button4.Text = "Открыть журнал";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.buttonOpenJournal_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.button4);
-            this.groupBox1.Location = new System.Drawing.Point(9, 148);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 100);
-            this.groupBox1.TabIndex = 10;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Journal test";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -525,13 +525,13 @@
             this.taskManager.ResumeLayout(false);
             this.testPane.ResumeLayout(false);
             this.testPane.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.adminPane.ResumeLayout(false);
             this.userPane.ResumeLayout(false);
             this.controlPane.ResumeLayout(false);
             this.servicePane.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.refiningStateBindingSource)).EndInit();
-            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
