@@ -22,14 +22,15 @@ namespace OilRefineryTest
 {
     public partial class Form1 : Form
     {
+        public readonly string userName;
+
+        private const string PATH_TO_SHA1 = "Data\\secure.byt";
+
         private readonly SavedInstanceManager savedInstanceManager = new SavedInstanceManager();
         private readonly NotificationManager notificationManager;
-        private const string PATH_TO_SHA1 = "Data\\secure.byt";
+        private readonly int userType;
         private ArrayList descriptions = new ArrayList();
 
-        private readonly int userType;// = 2;
-        public readonly string userName;// = "system";
-        //private ArrayList usersList = new ArrayList();
         public Form1()
         {
             if (!Directory.Exists("Data"))
@@ -80,83 +81,12 @@ namespace OilRefineryTest
             chart_Oil.ChartAreas[0].AxisX = new Axis() { Title = "Продолжительность наблюдения,сут" };
             chart_Oil.ChartAreas[0].AxisY = new Axis() { Title = "Степень распада нефтепродуктов,%" };
         }
-
-
-        //Открытия окна About
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            About about = new About();
-            about.ShowDialog();
-        }
-
-        //Добавление задачи в коллекцию через админ панель
-        private void button_AddTask_Click(object sender, EventArgs e)
-        {
-            AddTask addTask = new AddTask();
-            addTask.ShowDialog();
-            if (addTask.success())
-            {
-                ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName,addTask.resultName);
-                this.addTask(addTask.resultDate, addTask.resultName, addTask.description);
-                savedInstanceManager.addTask(addTask.resultDate, addTask.resultName, addTask.description);
-            }
-        }
-        //Изменение задачи в коллекции через админ панель
-        private void button_ChangeTask_Click(object sender, EventArgs e)
-        {
-            if (checkedListBox_Tasks.SelectedIndex != -1)
-            {
-                ChangeTask changeTask = new ChangeTask();
-                changeTask.ShowDialog();
-                if (changeTask.success())
-                {
-                    ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, changeTask.resultName);
-                    int index = checkedListBox_Tasks.SelectedIndex;
-                    checkedListBox_Tasks.Items.RemoveAt(index);
-                    checkedListBox_Tasks.Items.Insert(index, changeTask.resultName);
-                    listView1.Items.RemoveAt(index);
-                    listView1.Items.Insert(index, changeTask.resultDate.ToString().Substring(0, 16));
-                    notificationManager.addTask(changeTask.resultDate, changeTask.description, changeTask.resultName);
-                    savedInstanceManager.deleteTask(index);
-                    savedInstanceManager.addTask(changeTask.resultDate, changeTask.resultName, descriptions[index].ToString(), index);
-                }
-            }
-        }
-        //Удаление задачи в коллекции через админ панель
-        private void button_DeleteTask_Click(object sender, EventArgs e)
-        {
-            if (checkedListBox_Tasks.SelectedIndex != -1)
-            {
-                DeleteAcceptor deleteAcceptor = new DeleteAcceptor();
-                deleteAcceptor.ShowDialog();
-                int index = checkedListBox_Tasks.SelectedIndex;
-                if (deleteAcceptor.success())
-                {
-                    ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, checkedListBox_Tasks.Items[index].ToString());
-                    checkedListBox_Tasks.Items.RemoveAt(index);
-                    listView1.Items.RemoveAt(index);
-                    descriptions.RemoveAt(index);
-                    savedInstanceManager.deleteTask(index);
-                }
-            }
-        }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, "БУТОН КЛИК");
-            chart_Temperature.ChartAreas[0].AxisY.Maximum = 80;
-            //notificationManager.addTask(DateTime.Now.AddSeconds(2), "Тестовая запись", "Тест");
-            //notificationManager.addTask(DateTime.Now.AddSeconds(10));
-        }
-
+        //--------------------------------------------------------------------------------Form methods
         private void formClosing(object sender, EventArgs e)
         {
             savedInstanceManager.save();
             savedInstanceManager.savePoints();
-            //savedInstanceManager.clear();
-            //savedInstanceManager.addPoint(checkedListBox_Tasks.Items, listView1.Items, notificationManager);
-            //savedInstanceManager.save();
         }
-
         private void loadData()
         {
             if (savedInstanceManager.hasSavedFileXml())
@@ -167,12 +97,9 @@ namespace OilRefineryTest
                     addTask((DateTime)savedInstance.dateTime, savedInstance.taskName, savedInstance.taskDescription);
                 }
             }
-
-            if (true)//savedInstanceManager.hasSavedFilePoints())
+            if (savedInstanceManager.hasSavedFilePoints())
             {
                 Dictionary<int, ArrayList> series = savedInstanceManager.loadPoints();
-                //foreach (myPoint point in savedInstanceManager.loadPoints())
-                
                 for (int i = 0; i < series.Count; i++)
                 {
                     foreach (myPoint point in series[i])
@@ -205,7 +132,62 @@ namespace OilRefineryTest
                 }
             }
         }
-
+        //--------------------------------------------------------------------------------Menu forms
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            About about = new About();
+            about.ShowDialog();
+        }
+        //--------------------------------------------------------------------------------Tasks editing
+        private void button_AddTask_Click(object sender, EventArgs e)
+        {
+            AddTask addTask = new AddTask();
+            addTask.ShowDialog();
+            if (addTask.success())
+            {
+                ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName,addTask.resultName);
+                this.addTask(addTask.resultDate, addTask.resultName, addTask.description);
+                savedInstanceManager.addTask(addTask.resultDate, addTask.resultName, addTask.description);
+            }
+        }
+        private void button_ChangeTask_Click(object sender, EventArgs e)
+        {
+            if (checkedListBox_Tasks.SelectedIndex != -1)
+            {
+                ChangeTask changeTask = new ChangeTask();
+                changeTask.ShowDialog();
+                if (changeTask.success())
+                {
+                    ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, changeTask.resultName);
+                    int index = checkedListBox_Tasks.SelectedIndex;
+                    checkedListBox_Tasks.Items.RemoveAt(index);
+                    checkedListBox_Tasks.Items.Insert(index, changeTask.resultName);
+                    listView1.Items.RemoveAt(index);
+                    listView1.Items.Insert(index, changeTask.resultDate.ToString().Substring(0, 16));
+                    notificationManager.addTask(changeTask.resultDate, changeTask.description, changeTask.resultName);
+                    savedInstanceManager.deleteTask(index);
+                    savedInstanceManager.addTask(changeTask.resultDate, changeTask.resultName, descriptions[index].ToString(), index);
+                }
+            }
+        }
+        private void button_DeleteTask_Click(object sender, EventArgs e)
+        {
+            if (checkedListBox_Tasks.SelectedIndex != -1)
+            {
+                DeleteAcceptor deleteAcceptor = new DeleteAcceptor();
+                deleteAcceptor.ShowDialog();
+                int index = checkedListBox_Tasks.SelectedIndex;
+                if (deleteAcceptor.success())
+                {
+                    ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, checkedListBox_Tasks.Items[index].ToString());
+                    checkedListBox_Tasks.Items.RemoveAt(index);
+                    listView1.Items.RemoveAt(index);
+                    descriptions.RemoveAt(index);
+                    savedInstanceManager.deleteTask(index);
+                }
+            }
+        }
+        //---------------------------------------------------------------------Service----TaskEditing
         private void addTask(DateTime dt, string taskName, string taskDescription)
         {
             checkedListBox_Tasks.Items.Add(taskName);
@@ -213,46 +195,11 @@ namespace OilRefineryTest
             descriptions.Add(taskDescription);
             notificationManager.addTask(dt, taskDescription, taskName);
         }
-
+        //---------------------------------------------------------------------User editing
         private void buttonCreateUser_Click(object sender, EventArgs e)
         {
             createUser();
         }
-
-        private void button_CheckSecureSystem_Click(object sender, EventArgs e)
-        {
-            ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, "ЧЕК СЕКЬЮР СИСТЕМ КЛИК");
-            using (FileStream fs = new FileStream(PATH_TO_SHA1, FileMode.Open))
-            {
-                byte[] byteBufferAllFile = new byte[fs.Length];
-                fs.Read(byteBufferAllFile, 0, byteBufferAllFile.Length);
-
-                byte[] byteBufferType = new byte[4];
-                byte[] byteBufferSHA1 = new byte[20];
-                int count = 0;
-                do
-                {
-                    Array.Copy(byteBufferAllFile, count*24, byteBufferType, 0, 4);
-                    Array.Copy(byteBufferAllFile, count*24 + 4, byteBufferSHA1, 0, 20);
-
-                    byte[] SHA1 = Secure.ComputeHmacsha1(Encoding.UTF8.GetBytes(textBox_passwordCheck.Text),
-                        Encoding.UTF8.GetBytes(textBox_userNameCheck.Text + "HELIOSONE"));
-
-                    if (SHA1.SequenceEqual(byteBufferSHA1))
-                    {
-                        if (byteBufferType[3] == 1) textBox_userType.Text = "ADMIN";
-                        else
-                        {
-                            if (byteBufferType[3] == 2) textBox_userType.Text = "SYSTEM";
-                            else textBox_userType.Text = "USER";
-                        }
-                    }
-
-                    count++;
-                } while (count < fs.Length/24);
-            }
-        }
-
         private void createUser()
         {
             UserCreate userCreate = new UserCreate();
@@ -263,26 +210,17 @@ namespace OilRefineryTest
                 Secure.createUser(userCreate.userName, userCreate.password, userCreate.userType);
             }
         }
-
-        private void buttonTestJournal_Click(object sender, EventArgs e)
-        {
-            ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, "ТЕСТ ЖУРНАЛ КЛИК");
-            ArrayList readed = ActionRegistrator.readRecord();
-            MessageBox.Show(readed[0].ToString() + readed[1].ToString() + readed[2].ToString());
-        }
-
+        //---------------------------------------------------------------------Journal
         private void buttonOpenJournal_Click(object sender, EventArgs e)
         {
             ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, "Чтение журнала");
             Journal journal = new Journal();
             journal.Show();
-            //journal.Close();
         }
-        //Добавление точки в элемент Chart через панель управления
+        //--------------------------------------------------------------------------------Points editing
         private void button_AddPoint_Click(object sender, EventArgs e)
         {
             var points = getDataPointCollection(0);
-            //Передача последней точки в окно ввода, если имеется и ввод новой точки
             InputBox inputBox = points.Count != 0 ? new InputBox(points.Last().XValue, points.Last().YValues.Last()) : new InputBox(0, 0);
             inputBox.ShowDialog();
             if (inputBox.success())
@@ -304,17 +242,15 @@ namespace OilRefineryTest
                 for (int i = 0; i < addSeriesPoints.points.Count; i += 2)
                 {
                     points.Add(new DataPoint((double)addSeriesPoints.points[i], (double)addSeriesPoints.points[i + 1]));
-                    savedInstanceManager.addPoint(tabPane.SelectedIndex, (double)addSeriesPoints.points[i], 
-                                                  (double)addSeriesPoints.points[i + 1], addSeriesPoints.seriesNumber);
+                    savedInstanceManager.addPoint(tabPane.SelectedIndex, (double)addSeriesPoints.points[i],
+                        (double)addSeriesPoints.points[i + 1], addSeriesPoints.seriesNumber);
                 }
             }
         }
-
+        //---------------------------------------------------------------------Service----Points editing
         private DataPointCollection getDataPointCollection(int index)
         {
-            //Получение активной страницы таб панэли
             var tabPage = tabPane.TabPages[tabPane.SelectedIndex];
-            //Получение элемента Chart
             Chart chart = (Chart)tabPage.GetChildAtPoint(new Point(10, 10));
             if (chart.Series.Count < index)
             {
@@ -322,11 +258,65 @@ namespace OilRefineryTest
             }
             return chart.Series[index].Points;
         }
-
         private Series createSeries()
         {
             Series series = new Series();
             return series;
+        }
+
+      
+
+
+
+
+
+
+        //-----------------------------------------------------------------------Testing
+        private void button_CheckSecureSystem_Click(object sender, EventArgs e)
+        {
+            ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, "ЧЕК СЕКЬЮР СИСТЕМ КЛИК");
+            using (FileStream fs = new FileStream(PATH_TO_SHA1, FileMode.Open))
+            {
+                byte[] byteBufferAllFile = new byte[fs.Length];
+                fs.Read(byteBufferAllFile, 0, byteBufferAllFile.Length);
+
+                byte[] byteBufferType = new byte[4];
+                byte[] byteBufferSHA1 = new byte[20];
+                int count = 0;
+                do
+                {
+                    Array.Copy(byteBufferAllFile, count * 24, byteBufferType, 0, 4);
+                    Array.Copy(byteBufferAllFile, count * 24 + 4, byteBufferSHA1, 0, 20);
+
+                    byte[] SHA1 = Secure.ComputeHmacsha1(Encoding.UTF8.GetBytes(textBox_passwordCheck.Text),
+                        Encoding.UTF8.GetBytes(textBox_userNameCheck.Text + "HELIOSONE"));
+
+                    if (SHA1.SequenceEqual(byteBufferSHA1))
+                    {
+                        if (byteBufferType[3] == 1) textBox_userType.Text = "ADMIN";
+                        else
+                        {
+                            if (byteBufferType[3] == 2) textBox_userType.Text = "SYSTEM";
+                            else textBox_userType.Text = "USER";
+                        }
+                    }
+
+                    count++;
+                } while (count < fs.Length / 24);
+            }
+        }
+        private void buttonTestJournal_Click(object sender, EventArgs e)
+        {
+            ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, "ТЕСТ ЖУРНАЛ КЛИК");
+            ArrayList readed = ActionRegistrator.readRecord();
+            MessageBox.Show(readed[0].ToString() + readed[1].ToString() + readed[2].ToString());
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            /* ---------------------------------------------------Test notification
+            notificationManager.addTask(DateTime.Now.AddSeconds(2), "Тестовая запись", "Тест");
+            notificationManager.addTask(DateTime.Now.AddSeconds(10));
+            */
         }
     }
 }
