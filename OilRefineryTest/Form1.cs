@@ -71,10 +71,6 @@ namespace OilRefineryTest
                 } while (!userCreate.success);
                 
             }
-            chart_Temperature.ChartAreas[0].AxisY.Maximum = 80;
-            chart_CO2.ChartAreas[0].AxisY.Maximum = 100;
-            chart_Oil.ChartAreas[0].AxisY.Maximum = 100;
-
             chart_Temperature.ChartAreas[0].AxisX = new Axis() { Title = "Продолжительность наблюдения,сут" };
             chart_Temperature.ChartAreas[0].AxisY = new Axis() { Title = "Температура,С" };
 
@@ -160,9 +156,6 @@ namespace OilRefineryTest
                 ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, inputBox.result[0].ToString() + inputBox.result[1].ToString());
                 points.Add(new DataPoint(inputBox.result[0], inputBox.result[1]));
                 savedInstanceManager.addPoint(tabPane.SelectedIndex, inputBox.result[0], inputBox.result[1]);
-                chart_Temperature.ChartAreas[0].AxisY.Maximum = 80;
-                chart_CO2.ChartAreas[0].AxisY.Maximum = 100;
-                chart_Oil.ChartAreas[0].AxisY.Maximum = 100;
             }
         }
 
