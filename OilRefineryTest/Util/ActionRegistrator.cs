@@ -17,7 +17,7 @@ namespace OilRefineryTest.Util
             {
                 sw.WriteLine(actionTime.ToString());
                 string nameToWrite = "";
-                string specificationToWrite;
+                string specificationToWrite = "";
                 switch (actionName)
                 {
                     case "button_AddTask_Click":
@@ -71,7 +71,7 @@ namespace OilRefineryTest.Util
                 }
                 sw.WriteLine(nameToWrite);
                 sw.WriteLine(actionAutor);
-                sw.WriteLine(specification);
+                sw.WriteLine(specificationToWrite);
             }
         }
 
