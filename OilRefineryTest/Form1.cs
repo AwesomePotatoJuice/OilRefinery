@@ -107,7 +107,7 @@ namespace OilRefineryTest
                     descriptions.RemoveAt(index);
                     descriptions.Insert(index, changeTask.description);
                     notificationManager.addTask(changeTask.resultDate, changeTask.description, changeTask.resultName);
-                    notificationManager.addTask(changeTask.resultDate, changeTask.resultName);
+                   // notificationManager.addTask(changeTask.resultDate, changeTask.resultName);
                     savedInstanceManager.deleteTask(index);
                     savedInstanceManager.addTask(changeTask.resultDate, changeTask.resultName, "description", index);
                 }
@@ -211,7 +211,7 @@ namespace OilRefineryTest
             checkedListBox_Tasks.Items.Add(taskName);
             listView1.Items.Add(dt.ToString().Substring(0, 15));
             descriptions.Add(taskDescription);
-            notificationManager.addTask(dt, taskName);
+            //notificationManager.addTask(dt, taskName);
         }
 
         private void buttonCreateUser_Click(object sender, EventArgs e)
