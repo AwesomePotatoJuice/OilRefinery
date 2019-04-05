@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using OilRefineryTest.Tools;
 using OilRefineryTest.Util;
+using System.Collections;
+using static OilRefineryTest.Tools.Misc;
 
 namespace OilRefineryTest
 {
@@ -21,8 +23,9 @@ namespace OilRefineryTest
         public Login()
         {
             InitializeComponent();
-            string[] userStrings = {"user", "admin", "system"};
-            comboBox1.Items.AddRange(userStrings);
+            comboBox1.Items.AddRange(getUsersString());
+            
+           
             if (!File.Exists(PATH_TO_SHA1))
             {
                 userType = 4;
@@ -98,6 +101,19 @@ namespace OilRefineryTest
         private void button2_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private string[] getUsersString()
+        {
+            List<string> list = new List<string>();
+            foreach (User user in UsersManager.getUsers())
+            {
+                if (user.type == (int) UserType.USER)
+                {
+                    list.Add(user.name);
+                }
+            }
+            return list.ToArray();
         }
     }
 }

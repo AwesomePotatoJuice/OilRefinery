@@ -25,6 +25,7 @@ namespace OilRefineryTest
         private const string PATH_TO_SHA1 = "Data\\secure.byt";
 
         private readonly SavedInstanceManager savedInstanceManager = new SavedInstanceManager();
+        //private readonly UsersManager usersManager = new UsersManager();
         private readonly NotificationManager notificationManager;
         private readonly int userType;
         private ArrayList descriptions = new ArrayList();
@@ -66,7 +67,7 @@ namespace OilRefineryTest
                 do
                 {
                     userCreate.ShowDialog();
-                    Secure.createUser(userCreate.userName, userCreate.password, userCreate.userType);
+                    UsersManager.addUser(userCreate.userName, userCreate.password, userCreate.userType);
                 } while (!userCreate.success);
                 
             }
@@ -204,6 +205,11 @@ namespace OilRefineryTest
         {
             createUser();
         }
+        private void buttonOpenUserList_Click(object sender, EventArgs e)
+        {
+            UsersList usersList = new UsersList(UsersManager.getUsers());
+            usersList.ShowDialog();
+        }
         private void createUser()
         {
             UserCreate userCreate = new UserCreate();
@@ -211,13 +217,13 @@ namespace OilRefineryTest
             if (userCreate.success)
             {
                 ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, userCreate.userName);
-                Secure.createUser(userCreate.userName, userCreate.password, userCreate.userType);
+                UsersManager.addUser(userCreate.userName, userCreate.password, userCreate.userType);
             }
         }
         //---------------------------------------------------------------------Journal
         private void buttonOpenJournal_Click(object sender, EventArgs e)
         {
-            ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, "Чтение журнала");
+            //ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), userName, "Чтение журнала");
             Journal journal = new Journal();
             journal.Show();
         }
@@ -430,6 +436,5 @@ namespace OilRefineryTest
             */
         }
 
-        
     }
 }

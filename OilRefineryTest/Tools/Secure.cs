@@ -39,5 +39,26 @@ namespace OilRefineryTest.Tools
 
             return true;
         }
+        public static bool createUser(User user)
+        {
+            byte[] SHA1 = Secure.ComputeHmacsha1(Encoding.UTF8.GetBytes(user.password),
+                Encoding.UTF8.GetBytes(user.name + "HELIOSONE"));
+            using (FileStream fs = new FileStream(PATH_TO_SHA1, FileMode.Append))
+            {
+                int intValue = user.type;
+
+                byte[] bytes = new byte[4];
+
+                bytes[0] = (byte)(intValue >> 24);
+                bytes[1] = (byte)(intValue >> 16);
+                bytes[2] = (byte)(intValue >> 8);
+                bytes[3] = (byte)intValue;
+                fs.Write(bytes, 0, 4);
+                fs.Write(SHA1, 0, SHA1.Length);
+            }
+
+            return true;
+        }
     }
 }
+

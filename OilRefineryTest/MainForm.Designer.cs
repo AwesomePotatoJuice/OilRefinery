@@ -76,6 +76,7 @@
             this.controlPane = new System.Windows.Forms.GroupBox();
             this.servicePane = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.buttonDeleteSeries = new System.Windows.Forms.Button();
             this.buttonCalculate = new System.Windows.Forms.Button();
             this.buttonAddPrevData = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -84,7 +85,6 @@
             this.button_AddData = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.refiningStateBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.buttonDeleteSeries = new System.Windows.Forms.Button();
             this.tabPane.SuspendLayout();
             this.tabPage_Temperatue.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_Temperature)).BeginInit();
@@ -401,6 +401,7 @@
             this.buttonOpenUserList.TabIndex = 5;
             this.buttonOpenUserList.Text = "Открыть список";
             this.buttonOpenUserList.UseVisualStyleBackColor = true;
+            this.buttonOpenUserList.Click += new System.EventHandler(this.buttonOpenUserList_Click);
             // 
             // buttonChangeUser
             // 
@@ -493,6 +494,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ввод прошлых данных";
             // 
+            // buttonDeleteSeries
+            // 
+            this.buttonDeleteSeries.Location = new System.Drawing.Point(6, 86);
+            this.buttonDeleteSeries.Name = "buttonDeleteSeries";
+            this.buttonDeleteSeries.Size = new System.Drawing.Size(102, 23);
+            this.buttonDeleteSeries.TabIndex = 12;
+            this.buttonDeleteSeries.Text = "Удалить серию";
+            this.buttonDeleteSeries.UseVisualStyleBackColor = true;
+            this.buttonDeleteSeries.Click += new System.EventHandler(this.buttonDeleteSeries_Click);
+            // 
             // buttonCalculate
             // 
             this.buttonCalculate.Location = new System.Drawing.Point(6, 57);
@@ -558,16 +569,6 @@
             // refiningStateBindingSource
             // 
             this.refiningStateBindingSource.DataSource = typeof(OilRefinery.RefiningState);
-            // 
-            // buttonDeleteSeries
-            // 
-            this.buttonDeleteSeries.Location = new System.Drawing.Point(6, 86);
-            this.buttonDeleteSeries.Name = "buttonDeleteSeries";
-            this.buttonDeleteSeries.Size = new System.Drawing.Size(102, 23);
-            this.buttonDeleteSeries.TabIndex = 12;
-            this.buttonDeleteSeries.Text = "Удалить серию";
-            this.buttonDeleteSeries.UseVisualStyleBackColor = true;
-            this.buttonDeleteSeries.Click += new System.EventHandler(this.buttonDeleteSeries_Click);
             // 
             // MainForm
             // 

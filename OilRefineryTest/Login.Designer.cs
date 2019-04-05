@@ -69,7 +69,7 @@
             this.textBox_password.Location = new System.Drawing.Point(125, 101);
             this.textBox_password.Name = "textBox_password";
             this.textBox_password.Size = new System.Drawing.Size(100, 20);
-            this.textBox_password.TabIndex = 5;
+            this.textBox_password.TabIndex = 1;
             this.textBox_password.UseSystemPasswordChar = true;
             // 
             // button2
@@ -77,7 +77,7 @@
             this.button2.Location = new System.Drawing.Point(150, 149);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 7;
+            this.button2.TabIndex = 3;
             this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -88,7 +88,7 @@
             this.comboBox1.Location = new System.Drawing.Point(125, 59);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(100, 21);
-            this.comboBox1.TabIndex = 8;
+            this.comboBox1.TabIndex = 0;
             // 
             // Login
             // 
