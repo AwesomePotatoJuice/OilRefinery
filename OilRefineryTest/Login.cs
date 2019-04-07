@@ -18,21 +18,25 @@ namespace OilRefineryTest
     public partial class Login : Form
     {
         private const string PATH_TO_SHA1 = "Data\\secure.byt";
+        private const string PATH_TO_USESRS = "Data\\users.srl";
         public int userType { get; set; }
         public string userName { get; set; }
         public Login()
         {
             InitializeComponent();
-            comboBox1.Items.AddRange(getUsersString());
-            
            
             if (!File.Exists(PATH_TO_SHA1))
             {
                 userType = 4;
                 ActionRegistrator.addRecord(DateTime.Now, Misc.getMethodName(), "Первичный запуск", "-");
                 Hide();
+                return;
             }
 
+            if (File.Exists(PATH_TO_USESRS))
+            {
+                comboBox1.Items.AddRange(getUsersString());
+            }
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
