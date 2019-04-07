@@ -68,6 +68,7 @@ namespace OilRefineryTest
                 {
                     userCreate.ShowDialog();
                     UsersManager.addUser(userCreate.userName, userCreate.password, userCreate.userType);
+                    userName = userCreate.userName;
                 } while (!userCreate.success);
                 
             }

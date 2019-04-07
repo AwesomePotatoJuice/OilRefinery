@@ -69,6 +69,10 @@ namespace OilRefineryTest.Util
                         nameToWrite = "Оповещение пользователя";
                         specificationToWrite = specification;
                         break;
+                    default:
+                        nameToWrite = "default";
+                        specificationToWrite = specification;
+                        break;
                 }
                 sw.WriteLine(nameToWrite);
                 sw.WriteLine(actionAutor);
