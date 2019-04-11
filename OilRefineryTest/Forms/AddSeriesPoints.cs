@@ -16,6 +16,7 @@ namespace OilRefineryTest.Forms
         public bool success { get; set; }
         public int seriesNumber { get; set; }
         public ArrayList points = new ArrayList();
+        private int currentX = 0;
         public AddSeriesPoints()
         {
             InitializeComponent();
@@ -74,9 +75,10 @@ namespace OilRefineryTest.Forms
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
+            currentX = Int32.Parse(textBox1.Text);
             points.Add(Double.Parse(textBox1.Text));
             points.Add(Double.Parse(textBox2.Text));
-            textBox1.Text = "";
+            textBox1.Text = (currentX + 1).ToString();
             textBox2.Text = "";
             textBox1.Focus();
         }

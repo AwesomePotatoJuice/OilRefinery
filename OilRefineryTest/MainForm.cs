@@ -29,6 +29,7 @@ namespace OilRefineryTest
         private readonly NotificationManager notificationManager;
         private readonly int userType;
         private ArrayList descriptions = new ArrayList();
+        private ArrayList conditions = new ArrayList();
 
         public MainForm()
         {
@@ -86,6 +87,8 @@ namespace OilRefineryTest
         {
             savedInstanceManager.save();
             savedInstanceManager.savePoints();
+            Properties.Settings.Default.CutOffConditions = conditions;
+            Properties.Settings.Default.Save();
         }
         private void loadData()
         {
@@ -115,21 +118,21 @@ namespace OilRefineryTest
                             case 0:
                                 if (chart_Temperature.Series.Count <= i)
                                 {
-                                    chart_Temperature.Series.Add(createSeries());
+                                    chart_Temperature.Series.Add(createSeries(0));
                                 }
                                 chart_Temperature.Series[i].Points.Add(new DataPoint(point.x, point.y));
                                 break;
                             case 1:
                                 if (chart_CO2.Series.Count <= i)
                                 {
-                                    chart_CO2.Series.Add(createSeries());
+                                    chart_CO2.Series.Add(createSeries(0));
                                 }
                                 chart_CO2.Series[i].Points.Add(new DataPoint(point.x, point.y));
                                 break;
                             case 2:
                                 if (chart_Oil.Series.Count <= i)
                                 {
-                                    chart_Oil.Series.Add(createSeries());
+                                    chart_Oil.Series.Add(createSeries(0));
                                 }
                                 chart_Oil.Series[i].Points.Add(new DataPoint(point.x, point.y));
                                 break;
@@ -137,6 +140,8 @@ namespace OilRefineryTest
                     }
                 }
             }
+
+            conditions = Properties.Settings.Default.CutOffConditions;
         }
         //--------------------------------------------------------------------------------Menu forms
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -256,6 +261,8 @@ namespace OilRefineryTest
                     savedInstanceManager.addPoint(tabPane.SelectedIndex, (double)addSeriesPoints.points[i],
                         (double)addSeriesPoints.points[i + 1], addSeriesPoints.seriesNumber);
                 }
+
+                //checkConditions();
             }
         }
         private void ButtonCalculate_Click(object sender, EventArgs e)
@@ -281,15 +288,29 @@ namespace OilRefineryTest
             Chart chart = (Chart)tabPage.GetChildAtPoint(new Point(10, 10));
             if (chart.Series.Count <= index)
             {
-                chart.Series.Add(createSeries());
+                chart.Series.Add(createSeries(0));
             }
             return chart.Series[index].Points;
         }
-        private Series createSeries()
+        private Series createSeries(int i)
         {
-            Series series = new Series();
-            series.ChartType = SeriesChartType.FastLine;
-            return series;
+            if (i == 0)
+            {
+                Series series = new Series();
+                series.ChartType = SeriesChartType.FastLine;
+                return series;
+            }
+
+            if (i == 1)
+            {
+                Series series = new Series();
+                series.ChartType = SeriesChartType.Column;
+                series.Color = Color.DarkRed;
+                series.CustomProperties = "PixelPointWidth = 10";
+                return series;
+            }
+
+            return null;
         }
         private Dictionary<double, double>[] argegatePoints()
         {
@@ -359,21 +380,21 @@ namespace OilRefineryTest
                                     Dictionary<double, double> pointsMapCO2, 
                                     Dictionary<double, double> pointsMapOil)
         {
-            Series aprox1 = createSeries();
+            Series aprox1 = createSeries(0);
             //aprox1.Name = "Aprox1";
             chart_Temperature.Series.Add(aprox1);
             foreach (KeyValuePair<double, double> point in pointsMapTemperature)
             {
                 aprox1.Points.AddXY(point.Key, point.Value);
             }
-            Series aprox2 = createSeries();
+            Series aprox2 = createSeries(0);
             //aprox2.Name = "Aprox2";
             chart_CO2.Series.Add(aprox2);
             foreach (KeyValuePair<double, double> point in pointsMapCO2)
             {
                 aprox2.Points.Add(point.Key, point.Value);
             }
-            Series aprox3 = createSeries();
+            Series aprox3 = createSeries(0);
             //aprox3.Name = "Aprox3";
             chart_CO2.Series.Add(aprox3);
             foreach (KeyValuePair<double, double> point in pointsMapOil)
@@ -381,12 +402,77 @@ namespace OilRefineryTest
                 aprox3.Points.Add(point.Key, point.Value);
             }
         }
+        private void checkConditions()
+        {
+            int stage = 0;
+            int stagePointIndex = 0;
+            int currentStagePointIndex = 0;
+            bool found = true;
+            var tabPage = tabPane.TabPages[tabPane.SelectedIndex];
+            Chart chart = (Chart)tabPage.GetChildAtPoint(new Point(10, 10));
+            var points = chart.Series[0].Points;
+            //points.Last().YValues[0];
+            foreach (var point in points)
+            {
+                if (stage == 3)
+                {
+                   // break;
+                }
+                if (currentStagePointIndex < stagePointIndex && !found)
+                {
+                    currentStagePointIndex++;
+                    continue;
+                }
 
-        
+                //found = true;
+                stagePointIndex++;
+                if (point.YValues[0] >= (double)conditions[stage] && stage == 0)
+                {
+                    currentStagePointIndex = 0;
+                    stage++;
+                    //found = false;
+                    Series s = createSeries(1);
+                    chart.Series.Add(s);
+                    s.Points.Add(point);
+                    continue;
+                }
 
+                if (point.XValue > 70)
+                {
+                    stage = 2;
+                }
 
-
-
+                if (point.YValues[0] <= (double)conditions[stage] && stage == 1)
+                {
+                    currentStagePointIndex = 0;
+                    stage++;
+                    //found = false;
+                    Series s = createSeries(1);
+                    chart.Series.Add(s);
+                    s.Points.Add(point);
+                    continue;
+                }
+                if (point.YValues[0] <= (double)conditions[stage] &&  stage == 2)
+                {
+                    currentStagePointIndex = 0;
+                    stage++;
+                    //found = false;
+                    Series s = createSeries(1);
+                    chart.Series.Add(s);
+                    s.Points.Add(point);
+                    break;
+                }
+            }
+        }
+        private void buttonConditions_Click(object sender, EventArgs e)
+        {
+            ConditionsEditing conditionsEditing = new ConditionsEditing(conditions);
+            conditionsEditing.ShowDialog();
+            if (conditionsEditing.success)
+            {
+                conditions = conditionsEditing.conditions;
+            }
+        }
 
 
         //-----------------------------------------------------------------------Testing
@@ -431,11 +517,13 @@ namespace OilRefineryTest
         }
         private void button2_Click(object sender, EventArgs e)
         {
+            checkConditions();
             /* ---------------------------------------------------Test notification
             notificationManager.addTask(DateTime.Now.AddSeconds(2), "Тестовая запись", "Тест");
             notificationManager.addTask(DateTime.Now.AddSeconds(10));
             */
         }
 
+       
     }
 }

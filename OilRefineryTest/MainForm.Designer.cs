@@ -32,15 +32,14 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tabPane = new System.Windows.Forms.TabControl();
             this.tabPage_Temperatue = new System.Windows.Forms.TabPage();
@@ -79,7 +78,7 @@
             this.buttonDeleteSeries = new System.Windows.Forms.Button();
             this.buttonCalculate = new System.Windows.Forms.Button();
             this.buttonAddPrevData = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonConditions = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button_ChangeData = new System.Windows.Forms.Button();
             this.button_AddData = new System.Windows.Forms.Button();
@@ -138,24 +137,17 @@
             this.chart_Temperature.Location = new System.Drawing.Point(3, 3);
             this.chart_Temperature.Name = "chart_Temperature";
             series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series1.Legend = "Legend1";
             series1.MarkerBorderColor = System.Drawing.Color.Black;
             series1.MarkerBorderWidth = 2;
             series1.MarkerColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            series1.MarkerSize = 7;
             series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Diamond;
             series1.Name = "Series1";
             series1.ToolTip = "#VALX{N} #VAL{N}";
             series1.YValuesPerPoint = 4;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.MarkerBorderColor = System.Drawing.Color.Blue;
-            series2.MarkerBorderWidth = 2;
-            series2.MarkerColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            series2.Name = "Series2";
             this.chart_Temperature.Series.Add(series1);
-            this.chart_Temperature.Series.Add(series2);
             this.chart_Temperature.Size = new System.Drawing.Size(1348, 930);
             this.chart_Temperature.TabIndex = 1;
             // 
@@ -179,15 +171,15 @@
             this.chart_CO2.Legends.Add(legend2);
             this.chart_CO2.Location = new System.Drawing.Point(3, 3);
             this.chart_CO2.Name = "chart_CO2";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
             series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series2";
+            series3.Name = "Series2";
+            this.chart_CO2.Series.Add(series2);
             this.chart_CO2.Series.Add(series3);
-            this.chart_CO2.Series.Add(series4);
             this.chart_CO2.Size = new System.Drawing.Size(1348, 930);
             this.chart_CO2.TabIndex = 1;
             // 
@@ -212,15 +204,15 @@
             this.chart_Oil.Legends.Add(legend3);
             this.chart_Oil.Location = new System.Drawing.Point(3, 3);
             this.chart_Oil.Name = "chart_Oil";
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
             series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "Series2";
+            series5.Name = "Series2";
+            this.chart_Oil.Series.Add(series4);
             this.chart_Oil.Series.Add(series5);
-            this.chart_Oil.Series.Add(series6);
             this.chart_Oil.Size = new System.Drawing.Size(1348, 930);
             this.chart_Oil.TabIndex = 0;
             // 
@@ -474,7 +466,7 @@
             // servicePane
             // 
             this.servicePane.Controls.Add(this.groupBox2);
-            this.servicePane.Controls.Add(this.button1);
+            this.servicePane.Controls.Add(this.buttonConditions);
             this.servicePane.Location = new System.Drawing.Point(9, 173);
             this.servicePane.Name = "servicePane";
             this.servicePane.Size = new System.Drawing.Size(114, 211);
@@ -524,14 +516,15 @@
             this.buttonAddPrevData.UseVisualStyleBackColor = true;
             this.buttonAddPrevData.Click += new System.EventHandler(this.buttonAddPrevDate_Click);
             // 
-            // button1
+            // buttonConditions
             // 
-            this.button1.Location = new System.Drawing.Point(6, 34);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(102, 37);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Изменить константы";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonConditions.Location = new System.Drawing.Point(6, 34);
+            this.buttonConditions.Name = "buttonConditions";
+            this.buttonConditions.Size = new System.Drawing.Size(102, 37);
+            this.buttonConditions.TabIndex = 2;
+            this.buttonConditions.Text = "Изменить константы";
+            this.buttonConditions.UseVisualStyleBackColor = true;
+            this.buttonConditions.Click += new System.EventHandler(this.buttonConditions_Click);
             // 
             // panel1
             // 
@@ -630,7 +623,7 @@
         private System.Windows.Forms.GroupBox controlPane;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox servicePane;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonConditions;
         private System.Windows.Forms.Button button_ChangeData;
         private System.Windows.Forms.Button button_AddData;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_Oil;

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="204cbc9e-066e-45f4-8d92-9080f00b1a33" name="Activity1" linkedPackageId="0893fa06-b96d-4193-9db2-ff81d99f8f2f" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <ownedCommentsInternal>
+    <comment Id="cd1b97a2-a5a9-4e7c-b4e5-7b05b8536ba2">
+      <elementDefinition Id="7b0e32c2-81ff-48d3-b3ba-7b638b722280" />
+      <annotatedElements>
+        <decisionNodeMoniker Id="56ecbc1d-e28b-4ffc-9332-5b3788d30942" LastKnownName="Первичный" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="9a1fa6cf-81f0-41a5-8165-6d3a0c049132">
+      <profileInstance Id="5d224308-7941-4c44-b00d-a1e02a9dde59" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="9ddaf359-1be6-48f5-b452-562cd8e49f89">
+      <profileInstance Id="77c77109-0640-4e9d-9931-b1c4f759decd" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="ddf6dd2a-7d77-4eff-a8fd-c954f5054f0f" name="Activity1" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="510f837b-6fe7-4025-89bb-16e87fcd43b0" />
+        <nodes>
+          <initialNode Id="c0d59a86-3a1c-4b08-b042-97e83c3b4fa0" name="Initial1" isLeaf="false">
+            <elementDefinition Id="5cbf6b71-54fd-4a51-b16f-f145ea6d089e" />
+            <flowNodeTargets>
+              <controlFlow Id="28ff217e-433e-4657-b339-3f1f6cff1c6b" isLeaf="false">
+                <opaqueActionMoniker Id="cad1dfd7-5a45-43a6-84a7-fe4d49508f19" LastKnownName="Вход пользователя" />
+                <elementDefinition Id="53cc7657-470a-4b1f-b996-8ee6ebc9f0f4" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="cad1dfd7-5a45-43a6-84a7-fe4d49508f19" name="Вход пользователя" isLeaf="false">
+            <elementDefinition Id="309976ce-5a8f-426d-a1b9-37da8803ba5a" />
+          </opaqueAction>
+          <decisionNode Id="56ecbc1d-e28b-4ffc-9332-5b3788d30942" name="Первичный" isLeaf="false">
+            <elementDefinition Id="799f6dcf-7cd6-4f1b-8a91-f2a49f4e242d" />
+          </decisionNode>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="0893fa06-b96d-4193-9db2-ff81d99f8f2f" name="ModelingProject1">
+    <elementDefinition Id="beb7f207-b1c5-4349-ba7d-9d64adc165fd" />
+  </package>
+</activityRootModel>

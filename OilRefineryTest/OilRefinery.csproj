@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\ConditionsEditing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ConditionsEditing.Designer.cs">
+      <DependentUpon>ConditionsEditing.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DeleteSeries.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,6 +138,9 @@
     <Compile Include="Tools\Notification.cs" />
     <Compile Include="Tools\NotificationManager.cs" />
     <Compile Include="Util\RefiningState.cs" />
+    <EmbeddedResource Include="Forms\ConditionsEditing.resx">
+      <DependentUpon>ConditionsEditing.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DeleteSeries.resx">
       <DependentUpon>DeleteSeries.cs</DependentUpon>
     </EmbeddedResource>
